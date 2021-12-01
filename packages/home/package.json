@@ -1,5 +1,5 @@
 {
-	"name": "tcc-ecommerce",
+	"name": "@tcc-ecommerce/home",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",

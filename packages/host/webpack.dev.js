@@ -4,7 +4,7 @@ module.exports = {
 	...webpackCommonConfig,
 	mode: 'development',
 	devServer: {
-		port: 8081,
+		port: 8080,
 		historyApiFallback: true,
 	},
 }

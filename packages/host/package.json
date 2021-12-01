@@ -1,15 +1,11 @@
 {
-	"name": "tcc-ecommerce",
+	"name": "@tcc-ecommerce/host",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
-	"private": true,
 	"scripts": {
-		"dev": "yarn workspaces run dev"
+		"dev": "webpack-dev-server --config webpack.dev.js"
 	},
-	"workspaces": [
-		"packages/*"
-	],
 	"devDependencies": {
 		"@babel/cli": "^7.16.0",
 		"@babel/core": "^7.16.0",

@@ -41,10 +41,9 @@ module.exports = {
 			},
 		}),
 		new ModuleFederationPlugin({
-			name: 'home',
-			filename: 'remoteEntry.js',
-			exposes: {
-				Page: './src/App.tsx',
+			name: 'host',
+			remotes: {
+				home: 'home@http://localhost:8081/remoteEntry.js',
 			},
 			shared: {
 				...dependencies,
