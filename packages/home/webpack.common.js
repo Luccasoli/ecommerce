@@ -44,7 +44,7 @@ module.exports = {
 			name: 'home',
 			filename: 'remoteEntry.js',
 			exposes: {
-				Page: './src/App.tsx',
+				'./Page': './src/App',
 			},
 			shared: {
 				...dependencies,
