@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"dev": "yarn workspaces run dev"
+		"dev": "yarn workspace @tcc-ecommerce/home run dev & yarn workspace @tcc-ecommerce/host run dev"
 	},
 	"workspaces": [
 		"packages/*"
