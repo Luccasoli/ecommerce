@@ -1,4 +1,4 @@
-import { Flex, Image, Text, Grid, Box, VStack } from '@chakra-ui/react'
+import { Box, Flex, Grid, Image, Text, VStack } from '@chakra-ui/react'
 import Header from '../components/Header'
 
 export const HomePage = () => (
@@ -13,7 +13,7 @@ export const HomePage = () => (
 			src="https://www.dommen.com.br/image/cache/catalog/banners_top/banner_novoano-2000x500w.jpg"
 			alt="Dan Abramov"
 		/>
-		<Text px="16px" fontSize="2xl">
+		<Text p="16px" fontSize="2xl">
 			Mais vendidos
 		</Text>
 		<Grid mt={8} px="16px" gap={8} gridTemplateColumns="1fr 1fr 1fr 1fr">

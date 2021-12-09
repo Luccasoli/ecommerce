@@ -41,10 +41,13 @@ module.exports = {
 			},
 		}),
 		new ModuleFederationPlugin({
-			name: 'host',
+			name: 'search',
+			filename: 'remoteEntry.js',
+			exposes: {
+				'./Search': './src/pages/Search',
+			},
 			remotes: {
 				home: 'home@http://localhost:8081/remoteEntry.js',
-				search: 'search@http://localhost:8082/remoteEntry.js',
 			},
 			shared: {
 				...dependencies,

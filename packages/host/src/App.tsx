@@ -1,5 +1,7 @@
 // @ts-ignore
 import { HomePage } from 'home/Home'
+// @ts-ignore
+import { SearchPage } from 'search/Search'
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -8,6 +10,7 @@ export const App = () => (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/search" element={<SearchPage />} />
 			</Routes>
 		</BrowserRouter>
 	</ChakraProvider>
