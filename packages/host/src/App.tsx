@@ -1,15 +1,14 @@
-import styled from 'styled-components'
 // @ts-ignore
-import { App as HomeApp } from 'home/Page'
-
-const Main = styled.main`
-	display: flex;
-	flex-direction: column;
-`
+import { HomePage } from 'home/Home'
+import { ChakraProvider } from '@chakra-ui/react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export const App = () => (
-	<Main>
-		<h1>Shell</h1>
-		<HomeApp />
-	</Main>
+	<ChakraProvider>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+			</Routes>
+		</BrowserRouter>
+	</ChakraProvider>
 )
