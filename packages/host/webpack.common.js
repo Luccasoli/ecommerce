@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const PrerenderSPAPlugin = require('prerender-spa-plugin-next')
 const { dependencies } = require('./package.json')
 
 module.exports = {
@@ -49,6 +50,10 @@ module.exports = {
 			shared: {
 				...dependencies,
 			},
+		}),
+		new PrerenderSPAPlugin({
+			// Required - Routes to render.
+			routes: ['/', '/search'],
 		}),
 	],
 }
