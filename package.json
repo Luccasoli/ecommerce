@@ -6,7 +6,10 @@
 	"private": true,
 	"scripts": {
 		"dev": "lerna run --scope @tcc-ecommerce/* --parallel dev",
-		"build": "lerna run --scope @tcc-ecommerce/* --parallel build"
+		"build": "lerna run --scope @tcc-ecommerce/* --parallel build",
+		"ci:build:host": "lerna run --scope @tcc-ecommerce/host build",
+		"ci:build:home": "lerna run --scope @tcc-ecommerce/home build",
+		"ci:build:search": "lerna run --scope @tcc-ecommerce/search build"
 	},
 	"workspaces": [
 		"packages/*"
@@ -19,7 +22,6 @@
 		"@babel/preset-typescript": "^7.16.0",
 		"@types/react": "^17.0.37",
 		"@types/react-dom": "^17.0.11",
-		"@types/styled-components": "^5.1.15",
 		"@types/webpack": "^5.28.0",
 		"@typescript-eslint/eslint-plugin": "^5.4.0",
 		"@typescript-eslint/parser": "^5.4.0",
@@ -42,11 +44,5 @@
 		"webpack": "^5.64.4",
 		"webpack-cli": "^4.9.1",
 		"webpack-dev-server": "^4.6.0"
-	},
-	"dependencies": {
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-error-boundary": "^3.1.4",
-		"styled-components": "^5.3.3"
 	}
 }
