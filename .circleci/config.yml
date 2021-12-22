@@ -1,16 +1,66 @@
 version: 2.1
 
-jobs:
-  say-hello:
+executors:
+  docker-default:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:16.13.1-browsers
+
+orbs:
+  node: circleci/node@5.0.0
+
+commands:
+  install-from-root-with-yarn:
+    description: 'Install dpendencies from root with yarn using cache when available'
+    steps:
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  build_project:
+    description: 'Build specific mfe'
+    parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
+    steps:
+      - run:
+          command: yarn ci:build:<< parameters.project_name >>
+
+  deploy_project:
+    description: 'Deploy specific mfe'
+    parameters:
+      project_name_uppercase:
+        description: 'The name of the project that will be built in uppercase'
+        type: string
+    steps:
+      - run:
+          command: yarn netlify deploy --site $NETLIFY_<< parameters.project_name_uppercase >>_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=./packages/home/dist --prod
+
+jobs:
+  build_and_deploy_home:
+    environment:
+      NETLIFY_HOME_SITE_ID: ef6009e0-28d3-430c-a6cc-c6f92eb8d4b6
+      NETLIFY_ACCESS_TOKEN: tRDw4tjOmdIJvXmOfsJEHEVNKLRb_CDuK-cfBW2gyDY
+    executor: docker-default
     steps:
       - checkout
-      - run:
-          name: 'Say hello'
-          command: 'echo Hello, World!'
+      - install-from-root-with-yarn
+      - build_project:
+          project_name: home
+      - deploy_project:
+          project_name_uppercase: HOME
 
 workflows:
-  build_and_deploy:
+  default:
     jobs:
-      - say-hello
+      - build_and_deploy_home:
+          context: tcc-ecommerce
