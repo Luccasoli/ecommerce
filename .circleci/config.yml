@@ -1,0 +1,124 @@
+version: 2.1
+
+parameters:
+  # This parameter is used to trigger the main workflow
+  trigger:
+    type: boolean
+    default: true
+
+  # A parameter per package
+  host:
+    type: boolean
+    default: false
+  home:
+    type: boolean
+    default: false
+  search:
+    type: boolean
+    default: false
+
+executors:
+  docker-default:
+    docker:
+      - image: cimg/node:16.13.1-browsers
+
+commands:
+  install-from-root-with-yarn:
+    description: 'Install dpendencies from root with yarn using cache when available'
+    steps:
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  build_project:
+    description: 'Build specific mfe'
+    parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
+    steps:
+      - run:
+          command: yarn ci:build:<< parameters.project_name >>
+
+  deploy_project:
+    description: 'Deploy specific mfe'
+    parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
+      project_name_uppercase:
+        description: 'The name of the project that will be built in uppercase'
+        type: string
+    steps:
+      - run:
+          command: yarn netlify deploy --site $NETLIFY_<< parameters.project_name_uppercase >>_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=./packages/<< parameters.project_name >>/dist --prod
+
+jobs:
+  trigger-workflows:
+    executor: docker-default
+    steps:
+      - checkout
+      - run:
+          name: Trigger workflows
+          command: chmod +x .circleci/circle_trigger.sh && .circleci/circle_trigger.sh
+
+  build_and_deploy_project:
+    parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
+      project_name_uppercase:
+        description: 'The name of the project that will be built in uppercase'
+        type: string
+    #environment:
+    #  NETLIFY_HOME_SITE_ID: ef6009e0-28d3-430c-a6cc-c6f92eb8d4b6
+    #  NETLIFY_ACCESS_TOKEN: tRDw4tjOmdIJvXmOfsJEHEVNKLRb_CDuK-cfBW2gyDY
+    executor: docker-default
+    steps:
+      - checkout
+      - install-from-root-with-yarn
+      - build_project:
+          project_name: << parameters.project_name >>
+      - deploy_project:
+          project_name: << parameters.project_name >>
+          project_name_uppercase: << parameters.project_name_uppercase >>
+
+workflows:
+  ci:
+    when: << pipeline.parameters.trigger >>
+    jobs:
+      - trigger-workflows:
+          filters:
+            branches:
+              only:
+                - main
+
+  home:
+    when: << pipeline.parameters.home >>
+    jobs:
+      - build_and_deploy_project:
+          project_name: home
+          project_name_uppercase: HOME
+
+  search:
+    when: << pipeline.parameters.search >>
+    jobs:
+      - build_and_deploy_project:
+          project_name: search
+          project_name_uppercase: SEARCH
+
+  host:
+    when: << pipeline.parameters.host >>
+    jobs:
+      - build_and_deploy_project:
+          project_name: host
+          project_name_uppercase: HOST
