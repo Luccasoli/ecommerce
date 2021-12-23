@@ -1,12 +1,26 @@
 version: 2.1
 
+parameters:
+  # This parameter is used to trigger the main workflow
+  trigger:
+    type: boolean
+    default: true
+
+  # A parameter per package
+  host:
+    type: boolean
+    default: false
+  home:
+    type: boolean
+    default: false
+  search:
+    type: boolean
+    default: false
+
 executors:
   docker-default:
     docker:
       - image: cimg/node:16.13.1-browsers
-
-orbs:
-  node: circleci/node@5.0.0
 
 commands:
   install-from-root-with-yarn:
@@ -46,21 +60,54 @@ commands:
           command: yarn netlify deploy --site $NETLIFY_<< parameters.project_name_uppercase >>_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=./packages/home/dist --prod
 
 jobs:
-  build_and_deploy_home:
-    environment:
-      NETLIFY_HOME_SITE_ID: ef6009e0-28d3-430c-a6cc-c6f92eb8d4b6
-      NETLIFY_ACCESS_TOKEN: tRDw4tjOmdIJvXmOfsJEHEVNKLRb_CDuK-cfBW2gyDY
+  trigger-workflows:
+    executor: docker-default
+    steps:
+      - checkout
+      - run:
+          name: Trigger workflows
+          command: chmod +x .circleci/circle_trigger.sh && .circleci/circle_trigger.sh
+
+  build_and_deploy_project:
+    parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
+      project_name_uppercase:
+        description: 'The name of the project that will be built in uppercase'
+        type: string
+    #environment:
+    #  NETLIFY_HOME_SITE_ID: ef6009e0-28d3-430c-a6cc-c6f92eb8d4b6
+    #  NETLIFY_ACCESS_TOKEN: tRDw4tjOmdIJvXmOfsJEHEVNKLRb_CDuK-cfBW2gyDY
     executor: docker-default
     steps:
       - checkout
       - install-from-root-with-yarn
       - build_project:
-          project_name: home
+          project_name: << parameters.project_name >>
       - deploy_project:
-          project_name_uppercase: HOME
+          project_name_uppercase: << parameters.project_name_uppercase >>
 
 workflows:
-  default:
+  ci:
+    when: << pipeline.parameters.trigger >>
     jobs:
-      - build_and_deploy_home:
-          context: tcc-ecommerce
+      - trigger-workflows
+
+  home:
+    jobs:
+      - build_and_deploy_project:
+          project_name: home
+          project_name_uppercase: HOME
+
+  search:
+    jobs:
+      - build_and_deploy_project:
+          project_name: search
+          project_name_uppercase: SEARCH
+
+  host:
+    jobs:
+      - build_and_deploy_project:
+          project_name: host
+          project_name_uppercase: HOST
