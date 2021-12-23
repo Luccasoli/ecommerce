@@ -99,18 +99,21 @@ workflows:
       - trigger-workflows
 
   home:
+    when: << pipeline.parameters.home >>
     jobs:
       - build_and_deploy_project:
           project_name: home
           project_name_uppercase: HOME
 
   search:
+    when: << pipeline.parameters.search >>
     jobs:
       - build_and_deploy_project:
           project_name: search
           project_name_uppercase: SEARCH
 
   host:
+    when: << pipeline.parameters.host >>
     jobs:
       - build_and_deploy_project:
           project_name: host
