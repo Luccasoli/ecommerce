@@ -1,7 +1,7 @@
-import { HomePage } from 'home/Home'
-import { SearchPage } from 'search/Search'
 import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HomePage } from 'home/Home'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { SearchPage } from 'search/Search'
 
 export const App = () => (
 	<ChakraProvider>
