@@ -1,12 +1,10 @@
 version: 2.1
 
 parameters:
-  # This parameter is used to trigger the main workflow
   trigger:
     type: boolean
     default: true
 
-  # A parameter per package
   host:
     type: boolean
     default: false
@@ -79,9 +77,6 @@ jobs:
       project_name_uppercase:
         description: 'The name of the project that will be built in uppercase'
         type: string
-    #environment:
-    #  NETLIFY_HOME_SITE_ID: ef6009e0-28d3-430c-a6cc-c6f92eb8d4b6
-    #  NETLIFY_ACCESS_TOKEN: tRDw4tjOmdIJvXmOfsJEHEVNKLRb_CDuK-cfBW2gyDY
     executor: docker-default
     steps:
       - checkout
