@@ -52,12 +52,15 @@ commands:
   deploy_project:
     description: 'Deploy specific mfe'
     parameters:
+      project_name:
+        description: 'The name of the project that will be built'
+        type: string
       project_name_uppercase:
         description: 'The name of the project that will be built in uppercase'
         type: string
     steps:
       - run:
-          command: yarn netlify deploy --site $NETLIFY_<< parameters.project_name_uppercase >>_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=./packages/home/dist --prod
+          command: yarn netlify deploy --site $NETLIFY_<< parameters.project_name_uppercase >>_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --dir=./packages/<< parameters.project_name >>/dist --prod
 
 jobs:
   trigger-workflows:
@@ -86,6 +89,7 @@ jobs:
       - build_project:
           project_name: << parameters.project_name >>
       - deploy_project:
+          project_name: << parameters.project_name >>
           project_name_uppercase: << parameters.project_name_uppercase >>
 
 workflows:
