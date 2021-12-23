@@ -96,7 +96,11 @@ workflows:
   ci:
     when: << pipeline.parameters.trigger >>
     jobs:
-      - trigger-workflows
+      - trigger-workflows:
+          filters:
+            branches:
+              only:
+                - main
 
   home:
     when: << pipeline.parameters.home >>
