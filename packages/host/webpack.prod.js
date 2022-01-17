@@ -1,26 +1,13 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { ModuleFederationPlugin } = require('webpack').container
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const webpackCommonConfig = require('./webpack.common')
 const { dependencies } = require('./package.json')
 
-module.exports = {
-	...webpackCommonConfig,
-	mode: 'production',
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'src', 'index.html'),
-		}),
-		new ForkTsCheckerWebpackPlugin({
-			typescript: {
-				diagnosticOptions: {
-					semantic: true,
-					syntactic: true,
-				},
-				mode: 'write-references',
-			},
-		}),
+module.exports = () => {
+	const config = {
+		...webpackCommonConfig,
+		mode: 'production',
+	}
+	config.plugins.push(
 		new ModuleFederationPlugin({
 			name: 'host',
 			remotes: {
@@ -31,6 +18,8 @@ module.exports = {
 			shared: {
 				...dependencies,
 			},
-		}),
-	],
+		})
+	)
+
+	return config
 }

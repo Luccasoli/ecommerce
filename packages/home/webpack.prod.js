@@ -1,6 +1,10 @@
 const webpackCommonConfig = require('./webpack.common')
 
-module.exports = {
-	...webpackCommonConfig,
-	mode: 'production',
+module.exports = () => {
+	const config = {
+		...webpackCommonConfig,
+		mode: 'production',
+	}
+
+	return config
 }
