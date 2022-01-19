@@ -1,3 +1,4 @@
+const path = require('path')
 const { ModuleFederationPlugin } = require('webpack').container
 const webpackCommonConfig = require('./webpack.common')
 const { dependencies } = require('../package.json')
