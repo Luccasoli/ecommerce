@@ -1,6 +1,7 @@
+const path = require('path')
 const { ModuleFederationPlugin } = require('webpack').container
 const webpackCommonConfig = require('./webpack.common')
-const { dependencies } = require('./package.json')
+const { dependencies } = require('../package.json')
 
 module.exports = () => {
 	const config = {
@@ -24,7 +25,7 @@ module.exports = () => {
 			name: 'search',
 			filename: 'remoteEntry.js',
 			exposes: {
-				'./Search': './src/pages/Search',
+				'./Search': path.resolve(__dirname, '..', 'src', 'pages', 'Search'),
 			},
 			remotes: {
 				home: 'home@http://localhost:8081/remoteEntry.js',

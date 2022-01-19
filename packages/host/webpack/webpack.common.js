@@ -5,10 +5,10 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
-		main: path.resolve(__dirname, 'src', 'index.ts'),
+		main: path.resolve(__dirname, '..', 'src', 'index.ts'),
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, '..', 'dist'),
 		filename: 'bundle.[contenthash].js',
 		clean: true,
 	},
@@ -26,7 +26,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'src', 'index.html'),
+			template: path.resolve(__dirname, '..', 'src', 'index.html'),
 		}),
 		new ForkTsCheckerWebpackPlugin({
 			typescript: {

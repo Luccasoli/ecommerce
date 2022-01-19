@@ -1,22 +1,22 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const webpackCommonConfig = require('./webpack.common')
-const { dependencies } = require('./package.json')
+const { dependencies } = require('../package.json')
 
 module.exports = () => {
 	const config = {
 		...webpackCommonConfig,
-		mode: 'production',
+		mode: 'development',
+		devServer: {
+			port: 8080,
+			historyApiFallback: true,
+		},
 	}
-
 	config.plugins.push(
 		new ModuleFederationPlugin({
-			name: 'search',
-			filename: 'remoteEntry.js',
-			exposes: {
-				'./Search': './src/pages/Search',
-			},
+			name: 'host',
 			remotes: {
-				home: 'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
+				home: 'home@http://localhost:8081/remoteEntry.js',
+				search: 'search@http://localhost:8082/remoteEntry.js',
 			},
 			shared: {
 				...dependencies,

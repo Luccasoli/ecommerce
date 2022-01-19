@@ -1,6 +1,6 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const webpackCommonConfig = require('./webpack.common')
-const { dependencies } = require('./package.json')
+const { dependencies } = require('../package.json')
 
 module.exports = () => {
 	const config = {
