@@ -13,7 +13,7 @@ module.exports = () => {
 			name: 'search',
 			filename: 'remoteEntry.js',
 			exposes: {
-				'./Search': '../src/pages/Search',
+				'./Search': path.resolve(__dirname, '..', 'src', 'pages', 'Search'),
 			},
 			remotes: {
 				home: 'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
