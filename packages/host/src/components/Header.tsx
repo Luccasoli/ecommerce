@@ -12,12 +12,18 @@ import {
 	LinkOverlay,
 } from '@chakra-ui/react'
 import React from 'react'
-import { FiBookmark, FiShoppingCart, FiUser } from 'react-icons/fi'
+import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'
+// @ts-ignore
+import { useCart } from 'host/useCart'
+import { CartWithBadge } from './CartWithBadge'
 
 const Header = () => {
 	const [show, setShow] = React.useState(false)
 	const handleClick = () => setShow(!show)
+	const context = useCart()
+
+	console.log(context.cartItems)
 
 	return (
 		<HStack
@@ -69,11 +75,7 @@ const Header = () => {
 					aria-label="Search database"
 					icon={<FiBookmark size={20} />}
 				/>
-				<IconButton
-					colorScheme="teal"
-					aria-label="Search database"
-					icon={<FiShoppingCart size={20} />}
-				/>
+				<CartWithBadge count={context.cartItems.length} />
 				<Button
 					leftIcon={<FiUser size={20} />}
 					colorScheme="teal"

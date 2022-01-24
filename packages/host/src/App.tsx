@@ -1,7 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { HomePage } from 'home/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { SearchPage } from 'search/Search'
+// import { SearchPage } from 'search/Search'
 // @ts-ignore
 import { CartProvider } from 'host/CartProvider'
 
@@ -11,7 +11,7 @@ export const App = () => (
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/search" element={<SearchPage />} />
+					{/* <Route path="/search" element={<SearchPage />} /> */}
 				</Routes>
 			</BrowserRouter>
 		</CartProvider>

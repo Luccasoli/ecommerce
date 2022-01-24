@@ -8,6 +8,7 @@ module.exports = {
 		'./useCart': path.resolve(
 			__dirname,
 			'..',
+			'..',
 			'src',
 			'context',
 			'Cart',
@@ -16,12 +17,20 @@ module.exports = {
 		'./CartProvider': path.resolve(
 			__dirname,
 			'..',
+			'..',
 			'src',
 			'context',
 			'Cart',
 			'CartProvider'
 		),
-		'./Header': path.resolve(__dirname, '..', 'src', 'components', 'Header'),
+		'./Header': path.resolve(
+			__dirname,
+			'..',
+			'..',
+			'src',
+			'components',
+			'Header'
+		),
 	},
 	shared: {
 		...dependencies,

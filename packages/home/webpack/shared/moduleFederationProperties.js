@@ -6,8 +6,7 @@ module.exports = {
 	filename: 'remoteEntry.js',
 	// exposes modules (file) that should be made available to other bundles
 	exposes: {
-		'./Home': path.resolve(__dirname, '..', 'src', 'pages', 'Home'),
-		'./Header': path.resolve(__dirname, '..', 'src', 'components', 'Header'),
+		'./Home': path.resolve(__dirname, '..', '..', 'src', 'pages', 'Home'),
 	},
 	shared: {
 		...dependencies,

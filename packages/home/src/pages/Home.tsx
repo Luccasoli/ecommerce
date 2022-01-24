@@ -50,7 +50,6 @@ export const HomePage = () => {
 	)
 
 	const context = useCart()
-	console.log(context.cartItems)
 
 	const renderProducts = () => {
 		if (loading) {
