@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"@tcc-ecommerce/home": ["./packages/home/src/"],
+			"@tcc-ecommerce/home/*": ["./packages/home/src/*"]
+		}
+	}
+}

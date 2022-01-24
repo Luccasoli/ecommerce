@@ -1,8 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { ModuleFederationPlugin } = require('webpack').container
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const { dependencies } = require('../package.json')
 
 module.exports = {
 	devtool: 'inline-source-map',
@@ -37,24 +35,6 @@ module.exports = {
 					syntactic: true,
 				},
 				mode: 'write-references',
-			},
-		}),
-		new ModuleFederationPlugin({
-			name: 'home',
-			filename: 'remoteEntry.js',
-			// exposes modules (file) that should be made available to other bundles
-			exposes: {
-				'./Home': path.resolve(__dirname, '..', 'src', 'pages', 'Home'),
-				'./Header': path.resolve(
-					__dirname,
-					'..',
-					'src',
-					'components',
-					'Header'
-				),
-			},
-			shared: {
-				...dependencies,
 			},
 		}),
 	],

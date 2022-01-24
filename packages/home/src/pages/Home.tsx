@@ -1,26 +1,43 @@
-import { Box, Flex, Grid, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Grid, IconButton, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Product } from 'src/shared/types/Product'
+import { FiShoppingCart } from 'react-icons/fi'
+// @ts-ignore
+import { useCart } from 'host/useCart'
 import Header from '../components/Header'
 
+type Error = {
+	message: string
+}
+
 const useFetch = (url: string) => {
-	const [data, setData] = React.useState<any>()
+	const [data, setData] = React.useState<Product[]>()
 	const [loading, setLoading] = React.useState(true)
-	const [error, setError] = React.useState<any>()
+	const [error, setError] = React.useState<Error | undefined>()
 
 	React.useEffect(() => {
+		let isMounted = true
 		const fetchData = async () => {
 			try {
 				const response = await fetch(url)
 				const json = await response.json()
-				setData(json)
-				setLoading(false)
+				if (isMounted) {
+					setData(json)
+					setLoading(false)
+				}
 			} catch (e) {
-				setError(e)
-				setLoading(false)
+				if (isMounted) {
+					setError(e as Error)
+					setLoading(false)
+				}
 			}
 		}
 		fetchData()
+
+		return () => {
+			isMounted = false
+		}
 	}, [url])
 
 	return { data, loading, error }
@@ -31,6 +48,9 @@ export const HomePage = () => {
 		'http://localhost:3000/products?_page=1'
 	)
 
+	const context = useCart()
+	console.log(context.cartItems)
+
 	const renderProducts = () => {
 		if (loading) {
 			return <Text>Loading...</Text>
@@ -40,10 +60,20 @@ export const HomePage = () => {
 			return <Text>Error!</Text>
 		}
 
-		return data.map((product: any) => (
+		return data?.map(product => (
 			<Box key={product.id}>
-				<Image src={product.image} />
-				<Text>{product.name}</Text>
+				<Image src={product.image} mb="20px" />
+				<Flex justifyContent="space-between">
+					<Box>
+						<Text>{product.name}</Text>
+						<Text>{product.price}</Text>
+					</Box>
+					<IconButton
+						aria-label="add-to-cart"
+						onClick={() => context.addToCart(product)}
+						icon={<FiShoppingCart />}
+					/>
+				</Flex>
 			</Box>
 		))
 	}
@@ -56,17 +86,8 @@ export const HomePage = () => {
 			</Helmet>
 			<Flex flexDir="column">
 				<Header />
-				<Image
-					my="16px"
-					px="16px"
-					height="200px"
-					width="100%"
-					objectFit="cover"
-					src="https://www.dommen.com.br/image/cache/catalog/banners_top/banner_novoano-2000x500w.jpg"
-					alt="Dan Abramov"
-				/>
 				<Text p="16px" fontSize="2xl">
-					Mais vendidos
+					Lista de produtos
 				</Text>
 				<Grid
 					mt={8}
