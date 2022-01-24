@@ -5,7 +5,8 @@ import { Product } from 'src/shared/types/Product'
 import { FiShoppingCart } from 'react-icons/fi'
 // @ts-ignore
 import { useCart } from 'host/useCart'
-import Header from '../components/Header'
+// @ts-ignore
+import Header from 'host/Header'
 
 type Error = {
 	message: string
