@@ -1,17 +1,22 @@
-import { Box, IconButton } from '@chakra-ui/react'
+/* eslint-disable react/jsx-props-no-spreading */
+import { Box, forwardRef, IconButton, IconButtonProps } from '@chakra-ui/react'
 import { css } from '@emotion/react'
-import React from 'react'
 import { FiShoppingCart } from 'react-icons/fi'
 
-export function CartWithBadge({ count }: { count: number }) {
-	return (
+type CartWithBadgeProps = {
+	count: number
+} & Omit<IconButtonProps, 'aria-label'>
+
+export const CartWithBadge = forwardRef(
+	({ count, ...props }: CartWithBadgeProps, ref) => (
 		<IconButton
+			ref={ref}
 			colorScheme="teal"
 			css={css`
 				position: relative !important;
 			`}
 			py="2"
-			aria-label="Search database"
+			aria-label="cart"
 			size="lg"
 			icon={
 				<>
@@ -32,6 +37,7 @@ export function CartWithBadge({ count }: { count: number }) {
 					</Box>
 				</>
 			}
+			{...props}
 		/>
 	)
-}
+)

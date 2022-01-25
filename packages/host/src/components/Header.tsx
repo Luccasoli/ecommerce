@@ -10,20 +10,28 @@ import {
 	InputRightElement,
 	LinkBox,
 	LinkOverlay,
+	Popover,
+	PopoverArrow,
+	PopoverBody,
+	PopoverCloseButton,
+	PopoverContent,
+	PopoverHeader,
+	PopoverTrigger,
+	Portal,
+	Text,
 } from '@chakra-ui/react'
+// @ts-ignore
+import { useCart } from 'host/useCart'
 import React from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'
-// @ts-ignore
-import { useCart } from 'host/useCart'
+import { CartItem } from './CartItem'
 import { CartWithBadge } from './CartWithBadge'
 
 const Header = () => {
 	const [show, setShow] = React.useState(false)
 	const handleClick = () => setShow(!show)
 	const context = useCart()
-
-	console.log(context.cartItems)
 
 	return (
 		<HStack
@@ -50,12 +58,6 @@ const Header = () => {
 			<InputGroup size="md" flex={1}>
 				<Input pr="4.5rem" placeholder="Busque aqui" />
 				<InputRightElement width="4.5rem">
-					{/* <IconButton
-						colorScheme="transparent"
-						aria-label="search"
-						onClick={handleClick}
-						icon={<SearchIcon />}
-					/> */}
 					<LinkBox>
 						<LinkOverlay as={RouterLink} to="/search">
 							<IconButton
@@ -75,7 +77,33 @@ const Header = () => {
 					aria-label="Search database"
 					icon={<FiBookmark size={20} />}
 				/>
-				<CartWithBadge count={context.cartItems.length} />
+				<Popover>
+					<PopoverTrigger>
+						<CartWithBadge count={context.cartItems.length} />
+					</PopoverTrigger>
+					<Portal>
+						<PopoverContent>
+							<PopoverArrow />
+							<PopoverCloseButton />
+							<PopoverHeader>Seu carrinho</PopoverHeader>
+							<PopoverBody>
+								{context.cartItems.length > 0 ? (
+									context.cartItems.map((item: any) => (
+										<CartItem
+											id={item.id}
+											image={item.image}
+											name={item.name}
+											price={item.price}
+											amount={1}
+										/>
+									))
+								) : (
+									<Text>Não há itens no carrinho</Text>
+								)}
+							</PopoverBody>
+						</PopoverContent>
+					</Portal>
+				</Popover>
 				<Button
 					leftIcon={<FiUser size={20} />}
 					colorScheme="teal"

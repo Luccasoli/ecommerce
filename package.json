@@ -12,7 +12,10 @@
 		"ci:build:search": "lerna run --scope @tcc-ecommerce/search build"
 	},
 	"workspaces": [
-		"packages/*"
+		"packages/host",
+		"packages/search",
+		"packages/home",
+		"packages/server"
 	],
 	"devDependencies": {
 		"@babel/cli": "^7.16.0",
