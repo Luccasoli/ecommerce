@@ -4,13 +4,21 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // import { SearchPage } from 'search/Search'
 // @ts-ignore
 import { CartProvider } from 'host/CartProvider'
+import { ErrorHandler } from './components/ErrorBoundary'
 
 export const App = () => (
 	<ChakraProvider>
 		<CartProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<HomePage />} />
+					<Route
+						path="/"
+						element={
+							<ErrorHandler>
+								<HomePage />
+							</ErrorHandler>
+						}
+					/>
 					{/* <Route path="/search" element={<SearchPage />} /> */}
 				</Routes>
 			</BrowserRouter>
