@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react'
 // @ts-ignore
 import { useCart } from 'host/useCart'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'
 import { CartItem } from './CartItem'
@@ -32,6 +32,15 @@ const Header = () => {
 	const [show, setShow] = React.useState(false)
 	const handleClick = () => setShow(!show)
 	const context = useCart()
+
+	const quantityCartItems = useMemo(
+		() =>
+			context.cartItems.reduce(
+				(acc: number, item: any) => acc + item.quantity,
+				0
+			) || 0,
+		[context.cartItems]
+	)
 
 	return (
 		<HStack
@@ -79,7 +88,7 @@ const Header = () => {
 				/>
 				<Popover>
 					<PopoverTrigger>
-						<CartWithBadge count={context.cartItems.length} />
+						<CartWithBadge count={quantityCartItems} />
 					</PopoverTrigger>
 					<Portal>
 						<PopoverContent>

@@ -21,20 +21,22 @@ export const CartWithBadge = forwardRef(
 			icon={
 				<>
 					<FiShoppingCart size={20} />
-					<Box
-						as="span"
-						color="white"
-						position="absolute"
-						top="6px"
-						right="4px"
-						fontSize="0.8rem"
-						bgColor="red"
-						borderRadius="llg"
-						zIndex={9999}
-						p="1px"
-					>
-						{count}
-					</Box>
+					{!!count && (
+						<Box
+							as="span"
+							color="white"
+							position="absolute"
+							top="6px"
+							right="4px"
+							fontSize="0.8rem"
+							bgColor="red"
+							borderRadius="llg"
+							zIndex={9999}
+							p="1px"
+						>
+							{count}
+						</Box>
+					)}
 				</>
 			}
 			{...props}
