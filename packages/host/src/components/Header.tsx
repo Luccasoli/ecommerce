@@ -90,11 +90,10 @@ const Header = () => {
 								{context.cartItems.length > 0 ? (
 									context.cartItems.map((item: any) => (
 										<CartItem
+											key={item.id}
 											id={item.id}
-											image={item.image}
-											name={item.name}
-											price={item.price}
-											amount={1}
+											product={item.product}
+											quantity={item.quantity}
 										/>
 									))
 								) : (

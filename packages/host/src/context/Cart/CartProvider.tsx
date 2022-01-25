@@ -7,17 +7,17 @@ import React, {
 	useMemo,
 } from 'react'
 import { Product } from '@tcc-ecommerce/home/src/shared/types/Product'
+import { v4 as uuidv4 } from 'uuid'
 
 type CartItem = {
-	id: number
+	id: string
 	product: Product
-	price: number
 	quantity: number
 }
 
 const CartContext = React.createContext<{
 	cartItems: CartItem[]
-	addToCart: (newItem: CartItem) => void
+	addToCart: (newItem: Product) => void
 	removeFromCart: (id: Product['id']) => void
 }>(undefined!)
 
@@ -46,9 +46,32 @@ const CartProvider = ({ children }: ContextProviderProps) => {
 		localStorage.setItem('cartItems', JSON.stringify(cartItems))
 	}, [cartItems])
 
-	const addToCart = useCallback((newItem: CartItem) => {
-		setCartItems(prevItems => [...prevItems, newItem])
-	}, [])
+	const addToCart = useCallback(
+		(newItem: Product) => {
+			const existingItem = cartItems.find(
+				item => item.product.id === newItem.id
+			)
+
+			if (existingItem) {
+				setCartItems(prevItems =>
+					prevItems.map(item =>
+						item.product.id === newItem.id
+							? {
+									...item,
+									quantity: item.quantity + 1,
+							  }
+							: item
+					)
+				)
+			} else {
+				setCartItems(prevItems => [
+					...prevItems,
+					{ id: uuidv4(), product: newItem, quantity: 1 },
+				])
+			}
+		},
+		[cartItems]
+	)
 
 	const removeFromCart = useCallback((id: Product['id']) => {
 		setCartItems(prevItems => prevItems.filter(item => item.product.id !== id))
