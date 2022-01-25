@@ -1,11 +1,19 @@
 import { Box, Flex, IconButton, Image, Text } from '@chakra-ui/react'
-import { FiMinus, FiPlus } from 'react-icons/fi'
+import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
+// @ts-ignore
+import { useCart } from 'host/useCart'
 
 export const CartItem = ({ product, quantity }: any) => {
-	const handleAdd = () => {}
-	const handleRemove = () => {}
+	const context = useCart()
 
 	const priceAsNumber = parseFloat(product.price)
+
+	const handleAdd = () => {
+		context.addToCart(product)
+	}
+	const handleRemove = () => {
+		context.removeFromCart(product.id)
+	}
 
 	return (
 		<Flex mb="8px" alignItems="center">
@@ -21,7 +29,13 @@ export const CartItem = ({ product, quantity }: any) => {
 						colorScheme="transparent"
 						aria-label="search"
 						onClick={handleRemove}
-						icon={<FiMinus color="#030303" />}
+						icon={
+							quantity > 1 ? (
+								<FiMinus color="#030303" />
+							) : (
+								<FiTrash2 color="#030303" />
+							)
+						}
 					/>
 					<Text mx="8px">{quantity}</Text>
 					<IconButton

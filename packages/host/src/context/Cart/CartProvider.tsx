@@ -73,9 +73,29 @@ const CartProvider = ({ children }: ContextProviderProps) => {
 		[cartItems]
 	)
 
-	const removeFromCart = useCallback((id: Product['id']) => {
-		setCartItems(prevItems => prevItems.filter(item => item.product.id !== id))
-	}, [])
+	const removeFromCart = useCallback(
+		(id: Product['id']) => {
+			const existingItem = cartItems.find(item => item.product.id === id)
+
+			if (existingItem && existingItem.quantity > 1) {
+				setCartItems(prevItems =>
+					prevItems.map(item =>
+						item.product.id === id
+							? {
+									...item,
+									quantity: item.quantity - 1,
+							  }
+							: item
+					)
+				)
+			} else {
+				setCartItems(prevItems =>
+					prevItems.filter(item => item.product.id !== id)
+				)
+			}
+		},
+		[cartItems]
+	)
 
 	const providerValue = useMemo(
 		() => ({
