@@ -1,6 +1,6 @@
 /// <reference types="react" />
 
-declare module 'home/Home' {
+declare module '@home/Home' {
 	const HomePage: React.ComponentType
 
 	export { HomePage }

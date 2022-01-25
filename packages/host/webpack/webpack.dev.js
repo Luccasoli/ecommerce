@@ -15,8 +15,8 @@ module.exports = () => {
 		new ModuleFederationPlugin({
 			...moduleFederationProperties,
 			remotes: {
-				host: 'host@http://localhost:8080/remoteEntry.js',
-				home: 'home@http://localhost:8081/remoteEntry.js',
+				'@host': 'host@http://localhost:8080/remoteEntry.js',
+				'@home': 'home@http://localhost:8081/remoteEntry.js',
 				search: 'search@http://localhost:8082/remoteEntry.js',
 			},
 		})

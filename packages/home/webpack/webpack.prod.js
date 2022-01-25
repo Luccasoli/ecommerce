@@ -12,7 +12,7 @@ module.exports = () => {
 		new ModuleFederationPlugin({
 			...moduleFederationProperties,
 			remotes: {
-				host: 'host@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
+				'@host': 'host@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
 			},
 		})
 	)

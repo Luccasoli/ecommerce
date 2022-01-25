@@ -1,9 +1,9 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { HomePage } from 'home/Home'
+import { HomePage } from '@home/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // import { SearchPage } from 'search/Search'
 // @ts-ignore
-import { CartProvider } from 'host/CartProvider'
+import { CartProvider } from '@host/CartProvider'
 import { ErrorHandler } from './components/ErrorBoundary'
 
 export const App = () => (

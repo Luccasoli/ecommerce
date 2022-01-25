@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, Text, VStack, HStack } from '@chakra-ui/react'
 // @ts-ignore
-import Header from 'home/Header'
+import Header from '@home/Header'
 
 export const SearchPage = () => (
 	<Flex flexDir="column">

@@ -21,7 +21,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 // @ts-ignore
-import { useCart } from 'host/useCart'
+import { useCart } from '@host/useCart'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'

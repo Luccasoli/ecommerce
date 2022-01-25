@@ -34,7 +34,7 @@ module.exports = () => {
 				),
 			},
 			remotes: {
-				home: 'home@http://localhost:8081/remoteEntry.js',
+				'@home': 'home@http://localhost:8081/remoteEntry.js',
 			},
 			shared: {
 				...dependencies,

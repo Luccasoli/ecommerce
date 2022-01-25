@@ -17,7 +17,7 @@ module.exports = () => {
 				'./Search': path.resolve(__dirname, '..', 'src', 'pages', 'Search'),
 			},
 			remotes: {
-				home: 'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
+				'@home': 'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
 			},
 			shared: {
 				...dependencies,

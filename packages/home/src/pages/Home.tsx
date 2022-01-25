@@ -4,9 +4,9 @@ import { Helmet } from 'react-helmet'
 import { Product } from 'src/shared/types/Product'
 import { FiShoppingCart } from 'react-icons/fi'
 // @ts-ignore
-import { useCart } from 'host/useCart'
+import { useCart } from '@host/useCart'
 // @ts-ignore
-import Header from 'host/Header'
+import Header from '@host/Header'
 
 type Error = {
 	message: string

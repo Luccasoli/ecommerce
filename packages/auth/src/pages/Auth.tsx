@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 // @ts-ignore
-import Header from 'home/Header'
+import Header from '@home/Header'
 
 export const AuthhPage = () => (
 	<Flex flexDir="column">

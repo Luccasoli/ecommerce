@@ -1,7 +1,7 @@
 import { Box, Flex, IconButton, Image, Text } from '@chakra-ui/react'
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 // @ts-ignore
-import { useCart } from 'host/useCart'
+import { useCart } from '@host/useCart'
 
 export const CartItem = ({ product, quantity }: any) => {
 	const context = useCart()
