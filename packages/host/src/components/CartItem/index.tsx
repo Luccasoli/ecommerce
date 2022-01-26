@@ -1,11 +1,12 @@
 import { Box, Flex, IconButton, Image, Text } from '@chakra-ui/react'
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
 import { useCart } from '@host/useCart'
+import { TCartItem, TCartContext } from '@shared-types'
 
-export const CartItem = ({ product, quantity }: any) => {
-	const context = useCart()
+export const CartItem = ({ product, quantity }: TCartItem) => {
+	const context = useCart() as TCartContext
 
-	const priceAsNumber = parseFloat(product.price)
+	const priceAsNumber = product.price
 
 	const handleAdd = () => {
 		context.addToCart(product)

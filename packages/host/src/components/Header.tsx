@@ -21,6 +21,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import { useCart } from '@host/useCart'
+import { TCartContext } from '@shared-types'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'
@@ -30,7 +31,7 @@ import { CartWithBadge } from './CartWithBadge'
 const Header = () => {
 	const [show, setShow] = React.useState(false)
 	const handleClick = () => setShow(!show)
-	const context = useCart()
+	const context = useCart() as TCartContext
 
 	const quantityCartItems = useMemo(
 		() =>

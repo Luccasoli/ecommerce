@@ -4,14 +4,14 @@ import { Helmet } from 'react-helmet'
 import { FiShoppingCart } from 'react-icons/fi'
 import { useCart } from '@host/useCart'
 import Header from '@host/Header'
-import { Product } from '@shared-types'
+import { TProduct, TCartContext } from '@shared-types'
 
 type Error = {
 	message: string
 }
 
 const useFetch = (url: string) => {
-	const [data, setData] = React.useState<Product[]>()
+	const [data, setData] = React.useState<TProduct[]>()
 	const [loading, setLoading] = React.useState(true)
 	const [error, setError] = React.useState<Error | undefined>()
 
@@ -47,7 +47,7 @@ export const HomePage = () => {
 		'http://localhost:3000/products?_page=1'
 	)
 
-	const context = useCart()
+	const context = useCart() as TCartContext
 
 	const renderProducts = () => {
 		if (loading) {
