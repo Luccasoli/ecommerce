@@ -6,7 +6,7 @@ import React, {
 	useMemo,
 } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { CartItem, Product, TCartContext } from '@shared-types'
+import { TCartItem, TProduct, TCartContext } from '@shared-types'
 
 const CartContext = React.createContext<TCartContext>(undefined!)
 
@@ -15,10 +15,10 @@ type ContextProviderProps = {
 }
 
 const CartProvider = ({ children }: ContextProviderProps) => {
-	const [cartItems, setCartItems] = useState<CartItem[]>([])
+	const [cartItems, setCartItems] = useState<TCartItem[]>([])
 
 	useEffect(() => {
-		let cartItemsData: CartItem[] | null
+		let cartItemsData: TCartItem[] | null
 
 		try {
 			cartItemsData = JSON.parse(localStorage.getItem('cartItems')!)
@@ -36,7 +36,7 @@ const CartProvider = ({ children }: ContextProviderProps) => {
 	}, [cartItems])
 
 	const addToCart = useCallback(
-		(newItem: Product) => {
+		(newItem: TProduct) => {
 			const existingItem = cartItems.find(
 				item => item.product.id === newItem.id
 			)
@@ -63,7 +63,7 @@ const CartProvider = ({ children }: ContextProviderProps) => {
 	)
 
 	const removeFromCart = useCallback(
-		(id: Product['id']) => {
+		(id: TProduct['id']) => {
 			const existingItem = cartItems.find(item => item.product.id === id)
 
 			if (existingItem && existingItem.quantity > 1) {
