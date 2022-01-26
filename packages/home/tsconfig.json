@@ -7,7 +7,6 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
 		"moduleResolution": "node",
@@ -15,13 +14,12 @@
 		"allowSyntheticDefaultImports": true,
 		"jsx": "react-jsx",
 		"baseUrl": ".",
-		// Ensure that .d.ts files are created by tsc, but not .js files
 		"declaration": true,
 		"isolatedModules": false,
 		"paths": {
-			"~/*": ["packages/shell/src/*"]
-		},
-		"incremental": true
+			"@host/*": ["../host/exposed_types/host/*"],
+			"@shared-types": ["../shared_types"]
+		}
 	},
 	"exclude": ["node_modules"],
 	"include": ["**/*.ts", "**/*.tsx"]

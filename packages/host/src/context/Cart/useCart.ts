@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-// @ts-ignore
 import { CartContext } from './CartProvider'
+import { TCartContext } from './types'
 
-export const useCart = () => {
+export const useCart: () => TCartContext = () => {
 	const cartContext = useContext(CartContext)
 
 	if (cartContext === undefined) {

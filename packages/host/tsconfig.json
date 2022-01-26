@@ -1,5 +1,4 @@
 {
-	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"target": "es2015",
 		"lib": ["dom", "dom.iterable", "esnext"],
@@ -7,21 +6,20 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
-		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "esnext",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
 		"jsx": "react-jsx",
-		"baseUrl": ".",
-		// Ensure that .d.ts files are created by tsc, but not .js files
 		"declaration": true,
 		"isolatedModules": false,
+		"baseUrl": "./",
 		"paths": {
-			"~/*": ["packages/shell/src/*"]
-		},
-		"incremental": true
+			"@home/*": ["../home/exposed_types/home/*"],
+			"@host/*": ["../host/exposed_types/host/*"],
+			"@shared-types": ["../shared_types"]
+		}
 	},
 	"exclude": ["node_modules"],
 	"include": ["**/*.ts", "**/*.tsx"]

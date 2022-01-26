@@ -1,12 +1,10 @@
 import { Box, Flex, Grid, IconButton, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Product } from 'src/shared/types/Product'
 import { FiShoppingCart } from 'react-icons/fi'
-// @ts-ignore
 import { useCart } from '@host/useCart'
-// @ts-ignore
 import Header from '@host/Header'
+import { Product } from '@shared-types'
 
 type Error = {
 	message: string

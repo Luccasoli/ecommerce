@@ -1,6 +1,5 @@
 import { Box, Flex, IconButton, Image, Text } from '@chakra-ui/react'
 import { FiMinus, FiPlus, FiTrash2 } from 'react-icons/fi'
-// @ts-ignore
 import { useCart } from '@host/useCart'
 
 export const CartItem = ({ product, quantity }: any) => {
@@ -20,7 +19,9 @@ export const CartItem = ({ product, quantity }: any) => {
 			<Box mr="8px">
 				<Image src={product.image} />
 			</Box>
-			<Text flex="1">{product.name}</Text>
+			<Text px="32px" flex="1">
+				{product.name}
+			</Text>
 			<Flex flexDirection="column">
 				R$ {(priceAsNumber * quantity).toFixed(2)}
 				<Flex alignItems="center">

@@ -1,6 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-// @ts-ignore
 import { CartProvider } from '@host/CartProvider'
 import { HomePage } from './pages/Home'
 

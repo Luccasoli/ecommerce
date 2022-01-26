@@ -20,7 +20,6 @@ import {
 	Portal,
 	Text,
 } from '@chakra-ui/react'
-// @ts-ignore
 import { useCart } from '@host/useCart'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
@@ -86,7 +85,7 @@ const Header = () => {
 					aria-label="Search database"
 					icon={<FiBookmark size={20} />}
 				/>
-				<Popover>
+				<Popover variant="responsive">
 					<PopoverTrigger>
 						<CartWithBadge count={quantityCartItems} />
 					</PopoverTrigger>

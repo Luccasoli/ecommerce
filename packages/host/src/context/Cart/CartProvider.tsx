@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React, {
 	useState,
 	useEffect,
@@ -6,20 +5,11 @@ import React, {
 	useCallback,
 	useMemo,
 } from 'react'
-import { Product } from '@tcc-ecommerce/home/src/shared/types/Product'
 import { v4 as uuidv4 } from 'uuid'
+import { Product } from '@shared-types'
+import { TCartContext, CartItem } from './types'
 
-type CartItem = {
-	id: string
-	product: Product
-	quantity: number
-}
-
-const CartContext = React.createContext<{
-	cartItems: CartItem[]
-	addToCart: (newItem: Product) => void
-	removeFromCart: (id: Product['id']) => void
-}>(undefined!)
+const CartContext = React.createContext<TCartContext>(undefined!)
 
 type ContextProviderProps = {
 	children: ReactChild
