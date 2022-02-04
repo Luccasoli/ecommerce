@@ -1,9 +1,10 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { HomePage } from '@home/Home'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-// import { SearchPage } from 'search/Search'
 import { CartProvider } from '@host/CartProvider'
+import { lazy, Suspense } from 'react'
 import { ErrorHandler } from './components/ErrorBoundary'
+
+const HomePage = lazy(() => import('@home/Home'))
 
 const theme = extendTheme({
 	components: {
@@ -29,7 +30,9 @@ export const App = () => (
 						path="/"
 						element={
 							<ErrorHandler>
-								<HomePage />
+								<Suspense fallback={<div>Loading...</div>}>
+									<HomePage />
+								</Suspense>
 							</ErrorHandler>
 						}
 					/>
