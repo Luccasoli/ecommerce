@@ -1,4 +1,5 @@
 {
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"target": "es2015",
 		"lib": ["dom", "dom.iterable", "esnext"],
@@ -13,13 +14,7 @@
 		"allowSyntheticDefaultImports": true,
 		"jsx": "react-jsx",
 		"declaration": true,
-		"isolatedModules": false,
-		"baseUrl": "./",
-		"paths": {
-			"@home/*": ["../home/exposed_types/home/*"],
-			"@host/*": ["../host/exposed_types/host/*"],
-			"@shared-types": ["../shared_types"]
-		}
+		"isolatedModules": false
 	},
 	"exclude": ["node_modules"],
 	"include": ["**/*.ts", "**/*.tsx"]

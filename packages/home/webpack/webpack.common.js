@@ -23,23 +23,6 @@ module.exports = {
 				use: ['babel-loader'],
 				exclude: /node_modules/,
 			},
-			{
-				test: /\.(ts|tsx)$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'dts-loader',
-						options: {
-							name: 'home', // The name configured in ModuleFederationPlugin
-							exposes: {
-								// The exposes configured in ModuleFederationPlugin
-								'./Home': path.resolve(__dirname, '..', 'src', 'pages', 'Home'),
-							},
-							typesOutputDir: 'exposed_types', // Optional, default is '.wp_federation'
-						},
-					},
-				],
-			},
 		],
 	},
 	plugins: [

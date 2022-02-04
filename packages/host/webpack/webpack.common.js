@@ -23,45 +23,6 @@ module.exports = {
 				use: ['babel-loader'],
 				exclude: /node_modules/,
 			},
-			{
-				test: /\.(ts|tsx)$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'dts-loader',
-						options: {
-							name: 'host', // The name configured in ModuleFederationPlugin
-							exposes: {
-								// The exposes configured in ModuleFederationPlugin
-								'./useCart': path.resolve(
-									__dirname,
-									'..',
-									'src',
-									'context',
-									'Cart',
-									'useCart'
-								),
-								'./CartProvider': path.resolve(
-									__dirname,
-									'..',
-									'src',
-									'context',
-									'Cart',
-									'CartProvider'
-								),
-								'./Header': path.resolve(
-									__dirname,
-									'..',
-									'src',
-									'components',
-									'Header'
-								),
-							},
-							typesOutputDir: 'exposed_types', // Optional, default is '.wp_federation'
-						},
-					},
-				],
-			},
 		],
 	},
 	plugins: [
