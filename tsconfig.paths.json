@@ -3,10 +3,10 @@
 		"paths": {
 			"@tcc-ecommerce/home": ["./packages/home/src/"],
 			"@tcc-ecommerce/home/*": ["./packages/home/src/*"],
-			"@shared-types": ["./packages/shared-types"],
-			"###### EXPOSED MODULES ######": [],
+			"@shared/*": ["./packages/shared/*"],
 			"@host/useCart": ["./packages/host/src/context/Cart/useCart"],
 			"@host/CartProvider": ["./packages/host/src/context/Cart/CartProvider"],
+			"@host/Header": ["./packages/host/src/components/Header"],
 			"@home/Home": ["./packages/home/src/pages/Home"]
 		}
 	}

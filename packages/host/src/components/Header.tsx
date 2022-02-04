@@ -21,7 +21,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import { useCart } from '@host/useCart'
-import { TCartContext } from '@shared-types'
+import { TCartContext } from '@shared/types'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
 import { Link as RouterLink } from 'react-router-dom'

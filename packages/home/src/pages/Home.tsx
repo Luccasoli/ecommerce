@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet'
 import { FiShoppingCart } from 'react-icons/fi'
 import { useCart } from '@host/useCart'
 import Header from '@host/Header'
-import { TProduct, TCartContext } from '@shared-types'
+import { TProduct, TCartContext } from '@shared/types'
 
 type Error = {
 	message: string

@@ -6,7 +6,7 @@ import React, {
 	useMemo,
 } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { TCartItem, TProduct, TCartContext } from '@shared-types'
+import { TCartItem, TProduct, TCartContext } from '@shared/types'
 
 const CartContext = React.createContext<TCartContext>(undefined!)
 
