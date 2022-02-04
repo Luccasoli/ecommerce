@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"dev": "lerna run --scope @tcc-ecommerce/* --parallel dev",
+		"dev": "kill-port --port 8080,8081,3000 && lerna run --scope @tcc-ecommerce/* --parallel dev",
 		"build": "lerna run --scope @tcc-ecommerce/* --parallel build",
 		"ci:build:host": "lerna run --scope @tcc-ecommerce/host build",
 		"ci:build:home": "lerna run --scope @tcc-ecommerce/home build",
@@ -40,6 +40,7 @@
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"fork-ts-checker-webpack-plugin": "^6.4.2",
 		"html-webpack-plugin": "^5.5.0",
+		"kill-port": "^1.6.1",
 		"lerna": "^4.0.0",
 		"netlify-cli": "^8.4.2",
 		"prettier": "^2.5.0",
