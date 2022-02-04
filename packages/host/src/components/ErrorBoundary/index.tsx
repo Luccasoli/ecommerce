@@ -1,27 +1,22 @@
-import { ReactNode } from 'react'
-import {
-	ErrorBoundary as LibErrorBoundary,
-	FallbackProps,
-} from 'react-error-boundary'
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/require-default-props */
+import { ReactElement, ReactNode } from 'react'
+import { ErrorBoundary as LibErrorBoundary } from 'react-error-boundary'
 
-function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
-	return (
-		<div role="alert">
-			<p>Something went wrong:</p>
-			<pre>{error.message}</pre>
-			<button type="button" onClick={resetErrorBoundary}>
-				Try again
-			</button>
-		</div>
-	)
-}
+const DefaultError = (
+	<div role="alert">
+		<p>Something went wrong :\</p>
+	</div>
+)
 
 type TErrorHandlerProps = {
 	children: ReactNode
+	errorFallback?: ReactElement<any>
 }
 
-export const ErrorHandler = ({ children }: TErrorHandlerProps) => (
-	<LibErrorBoundary FallbackComponent={ErrorFallback}>
-		{children}
-	</LibErrorBoundary>
+export const ErrorHandler = ({
+	children,
+	errorFallback = DefaultError,
+}: TErrorHandlerProps) => (
+	<LibErrorBoundary fallback={errorFallback}>{children}</LibErrorBoundary>
 )

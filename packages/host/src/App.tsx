@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { CartProvider } from '@host/CartProvider'
 import { lazy, Suspense } from 'react'
 import { ErrorHandler } from './components/ErrorBoundary'
+import { ErrorPage } from './pages/ErrorPage'
 
 const HomePage = lazy(() => import('@home/Home'))
 
@@ -29,8 +30,8 @@ export const App = () => (
 					<Route
 						path="/"
 						element={
-							<ErrorHandler>
-								<Suspense fallback={<div>Loading...</div>}>
+							<ErrorHandler errorFallback={<ErrorPage />}>
+								<Suspense fallback={<div>Carregando...</div>}>
 									<HomePage />
 								</Suspense>
 							</ErrorHandler>
