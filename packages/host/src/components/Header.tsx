@@ -112,7 +112,10 @@ const Header = () => {
 						</PopoverContent>
 					</Portal>
 				</Popover>
+
 				<Button
+					as={RouterLink}
+					to="/auth"
 					leftIcon={<FiUser size={20} />}
 					colorScheme="teal"
 					variant="solid"

@@ -6,6 +6,8 @@ import { ErrorHandler } from './components/ErrorBoundary'
 import { ErrorPage } from './pages/ErrorPage'
 
 const HomePage = lazy(() => import('@home/Home'))
+const SearchPage = lazy(() => import('@search/Search'))
+const AuthPage = lazy(() => import('@auth/Auth'))
 
 const theme = extendTheme({
 	components: {
@@ -33,6 +35,26 @@ export const App = () => (
 							<ErrorHandler errorFallback={<ErrorPage />}>
 								<Suspense fallback={<div>Carregando...</div>}>
 									<HomePage />
+								</Suspense>
+							</ErrorHandler>
+						}
+					/>
+					<Route
+						path="/search"
+						element={
+							<ErrorHandler errorFallback={<ErrorPage />}>
+								<Suspense fallback={<div>Carregando...</div>}>
+									<SearchPage />
+								</Suspense>
+							</ErrorHandler>
+						}
+					/>
+					<Route
+						path="/auth"
+						element={
+							<ErrorHandler errorFallback={<ErrorPage />}>
+								<Suspense fallback={<div>Carregando...</div>}>
+									<AuthPage />
 								</Suspense>
 							</ErrorHandler>
 						}

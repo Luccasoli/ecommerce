@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"dev": "kill-port --port 8080,8081,3000 && lerna run --scope @tcc-ecommerce/* --parallel dev",
+		"dev": "kill-port --port 8080,8081,8082,8083,3000 && lerna run --scope @tcc-ecommerce/* --parallel dev",
 		"build": "lerna run --scope @tcc-ecommerce/* --parallel build",
 		"ci:build:host": "lerna run --scope @tcc-ecommerce/host build",
 		"ci:build:home": "lerna run --scope @tcc-ecommerce/home build",
@@ -14,7 +14,9 @@
 	"workspaces": [
 		"packages/host",
 		"packages/home",
-		"packages/server"
+		"packages/server",
+		"packages/auth",
+		"packages/search"
 	],
 	"devDependencies": {
 		"@babel/cli": "^7.16.0",
