@@ -19,6 +19,8 @@ module.exports = {
 	plugins: ['react', '@typescript-eslint'],
 	rules: {
 		'react/jsx-uses-react': 'off',
+		'react/jsx-sort-props': 1,
+		'react/jsx-props-no-spreading': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'import/prefer-default-export': 'off',
 		'react/function-component-definition': 'off',

@@ -1,10 +1,18 @@
-import { Box, Flex, Grid, IconButton, Image, Text } from '@chakra-ui/react'
+import {
+	Box,
+	Flex,
+	Grid,
+	Heading,
+	IconButton,
+	Image,
+	Text,
+} from '@chakra-ui/react'
+import Header from '@host/Header'
+import { useCart } from '@host/useCart'
+import { TCartContext, TProduct } from '@shared/types'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { FiShoppingCart } from 'react-icons/fi'
-import { useCart } from '@host/useCart'
-import Header from '@host/Header'
-import { TProduct, TCartContext } from '@shared/types'
 
 type Error = {
 	message: string
@@ -82,11 +90,11 @@ export const HomePage = () => {
 				<meta charSet="utf-8" />
 				<title>Tela Inicial</title>
 			</Helmet>
-			<Flex flexDir="column">
+			<Flex minH="100vh" flexDir="column">
 				<Header />
-				<Text p="16px" fontSize="2xl">
+				<Heading as="h2" p="16px" size="lg">
 					Lista de produtos
-				</Text>
+				</Heading>
 				<Grid
 					mt={8}
 					px="16px"
