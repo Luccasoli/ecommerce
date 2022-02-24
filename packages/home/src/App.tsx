@@ -8,8 +8,8 @@ export const App = () => (
 		<CartProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="*" element={<Navigate to="/" />} />
+					<Route element={<HomePage />} path="/" />
+					<Route element={<Navigate to="/" />} path="*" />
 				</Routes>
 			</BrowserRouter>
 		</CartProvider>

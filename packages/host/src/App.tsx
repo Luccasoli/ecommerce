@@ -30,7 +30,6 @@ export const App = () => (
 			<BrowserRouter>
 				<Routes>
 					<Route
-						path="/"
 						element={
 							<ErrorHandler errorFallback={<ErrorPage />}>
 								<Suspense fallback={<div>Carregando...</div>}>
@@ -38,9 +37,9 @@ export const App = () => (
 								</Suspense>
 							</ErrorHandler>
 						}
+						path="/"
 					/>
 					<Route
-						path="/search"
 						element={
 							<ErrorHandler errorFallback={<ErrorPage />}>
 								<Suspense fallback={<div>Carregando...</div>}>
@@ -48,9 +47,9 @@ export const App = () => (
 								</Suspense>
 							</ErrorHandler>
 						}
+						path="/search"
 					/>
 					<Route
-						path="/auth"
 						element={
 							<ErrorHandler errorFallback={<ErrorPage />}>
 								<Suspense fallback={<div>Carregando...</div>}>
@@ -58,6 +57,7 @@ export const App = () => (
 								</Suspense>
 							</ErrorHandler>
 						}
+						path="/auth"
 					/>
 					{/* <Route path="/search" element={<SearchPage />} /> */}
 				</Routes>

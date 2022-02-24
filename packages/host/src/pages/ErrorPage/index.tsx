@@ -5,7 +5,7 @@ import React from 'react'
 export const ErrorPage = () => (
 	<Flex flexDir="column" h="100vh">
 		<Header />
-		<Flex flex={1} alignItems="center">
+		<Flex alignItems="center" flex={1}>
 			<Heading p="16px">
 				Ocorreu uma falha com nossos serviços, tente novamente mais tarde.
 			</Heading>

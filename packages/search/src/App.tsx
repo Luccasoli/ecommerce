@@ -8,8 +8,8 @@ export const App = () => (
 		<CartProvider>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/search" element={<SearchPage />} />
-					<Route path="*" element={<Navigate to="/search" />} />
+					<Route element={<SearchPage />} path="/search" />
+					<Route element={<Navigate to="/search" />} path="*" />
 				</Routes>
 			</BrowserRouter>
 		</CartProvider>

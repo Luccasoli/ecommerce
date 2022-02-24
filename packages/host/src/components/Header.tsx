@@ -44,19 +44,19 @@ const Header = () => {
 
 	return (
 		<HStack
-			as="nav"
-			display="flex"
 			align="center"
-			justify="space-between"
-			wrap="wrap"
-			padding={6}
+			as="nav"
 			bg="teal.500"
 			color="white"
+			display="flex"
+			justify="space-between"
+			padding={6}
 			spacing={20}
+			wrap="wrap"
 		>
 			<LinkBox>
 				<Flex align="center" mr={5}>
-					<Heading as="h1" size="lg" letterSpacing="tighter">
+					<Heading as="h1" letterSpacing="tighter" size="lg">
 						<LinkOverlay as={RouterLink} to="/">
 							Microfrontend Store
 						</LinkOverlay>
@@ -64,16 +64,16 @@ const Header = () => {
 				</Flex>
 			</LinkBox>
 
-			<InputGroup size="md" flex={1}>
-				<Input pr="4.5rem" placeholder="Busque aqui" />
+			<InputGroup flex={1} size="md">
+				<Input placeholder="Busque aqui" pr="4.5rem" />
 				<InputRightElement width="4.5rem">
 					<LinkBox>
 						<LinkOverlay as={RouterLink} to="/search">
 							<IconButton
-								colorScheme="transparent"
 								aria-label="search"
-								onClick={handleClick}
+								colorScheme="transparent"
 								icon={<SearchIcon />}
+								onClick={handleClick}
 							/>
 						</LinkOverlay>
 					</LinkBox>
@@ -82,8 +82,8 @@ const Header = () => {
 
 			<HStack spacing={4}>
 				<IconButton
-					colorScheme="teal"
 					aria-label="Search database"
+					colorScheme="teal"
 					icon={<FiBookmark size={20} />}
 				/>
 				<Popover variant="responsive">
@@ -115,9 +115,9 @@ const Header = () => {
 
 				<Button
 					as={RouterLink}
-					to="/auth"
-					leftIcon={<FiUser size={20} />}
 					colorScheme="teal"
+					leftIcon={<FiUser size={20} />}
+					to="/auth"
 					variant="solid"
 				>
 					Acessar

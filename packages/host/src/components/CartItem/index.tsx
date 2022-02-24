@@ -16,21 +16,19 @@ export const CartItem = ({ product, quantity }: TCartItem) => {
 	}
 
 	return (
-		<Flex mb="8px" alignItems="center">
+		<Flex alignItems="center" mb="8px">
 			<Box mr="8px">
 				<Image src={product.image} />
 			</Box>
-			<Text px="32px" flex="1">
+			<Text flex="1" px="32px">
 				{product.name}
 			</Text>
 			<Flex flexDirection="column">
 				R$ {(priceAsNumber * quantity).toFixed(2)}
 				<Flex alignItems="center">
 					<IconButton
-						size="sm"
-						colorScheme="transparent"
 						aria-label="search"
-						onClick={handleRemove}
+						colorScheme="transparent"
 						icon={
 							quantity > 1 ? (
 								<FiMinus color="#030303" />
@@ -38,14 +36,16 @@ export const CartItem = ({ product, quantity }: TCartItem) => {
 								<FiTrash2 color="#030303" />
 							)
 						}
+						onClick={handleRemove}
+						size="sm"
 					/>
 					<Text mx="8px">{quantity}</Text>
 					<IconButton
-						size="sm"
-						colorScheme="transparent"
 						aria-label="search"
-						onClick={handleAdd}
+						colorScheme="transparent"
 						icon={<FiPlus color="#030303" />}
+						onClick={handleAdd}
+						size="sm"
 					/>
 				</Flex>
 			</Flex>

@@ -11,34 +11,34 @@ export const CartWithBadge = forwardRef(
 	({ count, ...props }: CartWithBadgeProps, ref) => (
 		<IconButton
 			ref={ref}
+			aria-label="cart"
 			colorScheme="teal"
 			css={css`
 				position: relative !important;
 			`}
-			py="2"
-			aria-label="cart"
-			size="lg"
 			icon={
 				<>
 					<FiShoppingCart size={20} />
 					{!!count && (
 						<Box
 							as="span"
-							color="white"
-							position="absolute"
-							top="6px"
-							right="4px"
-							fontSize="0.8rem"
 							bgColor="red"
 							borderRadius="llg"
-							zIndex={9999}
+							color="white"
+							fontSize="0.8rem"
 							p="1px"
+							position="absolute"
+							right="4px"
+							top="6px"
+							zIndex={9999}
 						>
 							{count}
 						</Box>
 					)}
 				</>
 			}
+			py="2"
+			size="lg"
 			{...props}
 		/>
 	)

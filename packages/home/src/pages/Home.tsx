@@ -68,7 +68,7 @@ export const HomePage = () => {
 
 		return data?.map(product => (
 			<Box key={product.id}>
-				<Image src={product.image} mb="20px" />
+				<Image mb="20px" src={product.image} />
 				<Flex justifyContent="space-between">
 					<Box>
 						<Text>{product.name}</Text>
@@ -76,8 +76,8 @@ export const HomePage = () => {
 					</Box>
 					<IconButton
 						aria-label="add-to-cart"
-						onClick={() => context.addToCart(product)}
 						icon={<FiShoppingCart />}
+						onClick={() => context.addToCart(product)}
 					/>
 				</Flex>
 			</Box>
@@ -90,14 +90,12 @@ export const HomePage = () => {
 				<meta charSet="utf-8" />
 				<title>Tela Inicial</title>
 			</Helmet>
-			<Flex minH="100vh" flexDir="column">
+			<Flex flexDir="column" minH="100vh">
 				<Header />
 				<Heading as="h2" p="16px" size="lg">
 					Lista de produtos
 				</Heading>
 				<Grid
-					mt={8}
-					px="16px"
 					gap={8}
 					gridTemplateColumns={{
 						base: '1fr',
@@ -105,6 +103,8 @@ export const HomePage = () => {
 						lg: 'repeat(3, 1fr)',
 						xl: 'repeat(4, 1fr)',
 					}}
+					mt={8}
+					px="16px"
 				>
 					{renderProducts()}
 				</Grid>
