@@ -8,8 +8,6 @@ import {
 	HeadingProps,
 	Input,
 	StackProps,
-	useTheme,
-	VStack,
 } from '@chakra-ui/react'
 import Header from '@host/Header'
 import { Helmet } from 'react-helmet'
@@ -17,7 +15,7 @@ import { Helmet } from 'react-helmet'
 const SectionHeader = ({ children, ...props }: HeadingProps) => (
 	<Heading
 		as="h3"
-		color="red"
+		color="teal"
 		py="24px"
 		size="lg"
 		textAlign="center"
