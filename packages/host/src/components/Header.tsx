@@ -33,6 +33,8 @@ const Header = () => {
 	const handleClick = () => setShow(!show)
 	const context = useCart() as TCartContext
 
+	const hasCartItems = context.cartItems.length > 0
+
 	const quantityCartItems = useMemo(
 		() =>
 			context.cartItems.reduce(
@@ -96,7 +98,7 @@ const Header = () => {
 							<PopoverCloseButton />
 							<PopoverHeader>Seu carrinho</PopoverHeader>
 							<PopoverBody>
-								{context.cartItems.length > 0 ? (
+								{hasCartItems ? (
 									context.cartItems.map((item: any) => (
 										<CartItem
 											key={item.id}
@@ -109,6 +111,11 @@ const Header = () => {
 									<Text>Não há itens no carrinho</Text>
 								)}
 							</PopoverBody>
+							{hasCartItems && (
+								<Button as={RouterLink} colorScheme="orange" to="/">
+									Fechar pedido
+								</Button>
+							)}
 						</PopoverContent>
 					</Portal>
 				</Popover>
