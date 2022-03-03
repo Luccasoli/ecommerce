@@ -1,25 +1,13 @@
-import {
-	Box,
-	Flex,
-	Grid,
-	Heading,
-	IconButton,
-	Image,
-	Text,
-} from '@chakra-ui/react'
+import { Flex, Grid, Heading, Text } from '@chakra-ui/react'
 import Header from '@host/Header'
-import { useCart } from '@host/useCart'
-import { TCartContext } from '@shared/types'
 import { Helmet } from 'react-helmet'
-import { FiShoppingCart } from 'react-icons/fi'
+import { ProductItemCard } from '@home/ProductItemCard'
 import { useFetch } from '../hooks/useFetch'
 
 export const HomePage = () => {
 	const { data, loading, error } = useFetch(
 		'http://localhost:3000/products?_page=1'
 	)
-
-	const context = useCart() as TCartContext
 
 	const renderProducts = () => {
 		if (loading) {
@@ -30,22 +18,7 @@ export const HomePage = () => {
 			return <Text>Error!</Text>
 		}
 
-		return data?.map(product => (
-			<Box key={product.id}>
-				<Image mb="20px" src={product.image} />
-				<Flex justifyContent="space-between">
-					<Box>
-						<Text>{product.name}</Text>
-						<Text>{product.price}</Text>
-					</Box>
-					<IconButton
-						aria-label="add-to-cart"
-						icon={<FiShoppingCart />}
-						onClick={() => context.addToCart(product)}
-					/>
-				</Flex>
-			</Box>
-		))
+		return data?.map(product => <ProductItemCard product={product} />)
 	}
 
 	return (

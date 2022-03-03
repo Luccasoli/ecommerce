@@ -1,25 +1,13 @@
-import {
-	Box,
-	Flex,
-	Grid,
-	Text,
-	VStack,
-	HStack,
-	Image,
-	IconButton,
-} from '@chakra-ui/react'
-import Header from '@host/Header'
+import { Flex, Grid, HStack, Text } from '@chakra-ui/react'
+import { ProductItemCard } from '@home/ProductItemCard'
 import { useFetch } from '@home/useFetch'
-import { TCartContext } from '@shared/types'
-import { useCart } from '@host/useCart'
-import { FiShoppingCart } from 'react-icons/fi'
+import Header from '@host/Header'
 import { useLocation } from 'react-router-dom'
 
 export const SearchPage = () => {
 	const { data, loading, error } = useFetch(
 		'http://localhost:3000/products?_page=1'
 	)
-	const context = useCart() as TCartContext
 	const location = useLocation()
 
 	function renderSearch() {
@@ -41,20 +29,7 @@ export const SearchPage = () => {
 						return item.name.toLowerCase().includes(search.toLowerCase())
 					})
 					.map(product => (
-						<Box key={product.id}>
-							<Image mb="20px" src={product.image} />
-							<Flex justifyContent="space-between">
-								<Box>
-									<Text>{product.name}</Text>
-									<Text>{product.price}</Text>
-								</Box>
-								<IconButton
-									aria-label="add-to-cart"
-									icon={<FiShoppingCart />}
-									onClick={() => context.addToCart(product)}
-								/>
-							</Flex>
-						</Box>
+						<ProductItemCard product={product} />
 					))}
 			</Grid>
 		)
