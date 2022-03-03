@@ -8,6 +8,7 @@
 			"@host/CartProvider": ["./packages/host/src/context/Cart/CartProvider"],
 			"@host/Header": ["./packages/host/src/components/Header"],
 			"@home/Home": ["./packages/home/src/pages/Home"],
+			"@home/useFetch": ["./packages/home/src/hooks/useFetch"],
 			"@search/Search": ["./packages/search/src/pages/Search"],
 			"@auth/Auth": ["./packages/auth/src/pages/Auth"]
 		}

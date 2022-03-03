@@ -68,10 +68,13 @@ module.exports = env => {
 				remotes: devMode
 					? {
 							'@host': 'host@http://localhost:8080/remoteEntry.js',
+							'@home': 'home@http://localhost:8081/remoteEntry.js',
 					  }
 					: {
 							'@host':
 								'host@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
+							'@home':
+								'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
 					  },
 			}),
 		],

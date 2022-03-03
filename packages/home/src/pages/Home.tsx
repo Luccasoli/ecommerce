@@ -9,46 +9,10 @@ import {
 } from '@chakra-ui/react'
 import Header from '@host/Header'
 import { useCart } from '@host/useCart'
-import { TCartContext, TProduct } from '@shared/types'
-import React from 'react'
+import { TCartContext } from '@shared/types'
 import { Helmet } from 'react-helmet'
 import { FiShoppingCart } from 'react-icons/fi'
-
-type Error = {
-	message: string
-}
-
-const useFetch = (url: string) => {
-	const [data, setData] = React.useState<TProduct[]>()
-	const [loading, setLoading] = React.useState(true)
-	const [error, setError] = React.useState<Error | undefined>()
-
-	React.useEffect(() => {
-		let isMounted = true
-		const fetchData = async () => {
-			try {
-				const response = await fetch(url)
-				const json = await response.json()
-				if (isMounted) {
-					setData(json)
-					setLoading(false)
-				}
-			} catch (e) {
-				if (isMounted) {
-					setError(e as Error)
-					setLoading(false)
-				}
-			}
-		}
-		fetchData()
-
-		return () => {
-			isMounted = false
-		}
-	}, [url])
-
-	return { data, loading, error }
-}
+import { useFetch } from '../hooks/useFetch'
 
 export const HomePage = () => {
 	const { data, loading, error } = useFetch(

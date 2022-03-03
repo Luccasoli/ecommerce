@@ -61,6 +61,7 @@ module.exports = env => {
 				filename: 'remoteEntry.js',
 				exposes: {
 					'./Home': path.resolve('src', 'pages', 'Home'),
+					'./useFetch': path.resolve('src', 'hooks', 'useFetch'),
 				},
 				shared: {
 					...dependencies,

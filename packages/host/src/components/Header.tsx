@@ -24,15 +24,15 @@ import { useCart } from '@host/useCart'
 import { TCartContext } from '@shared/types'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { CartItem } from './CartItem'
 import { CartWithBadge } from './CartWithBadge'
 
 const Header = () => {
-	const [show, setShow] = React.useState(false)
-	const handleClick = () => setShow(!show)
 	const context = useCart() as TCartContext
 
+	const inputRef = React.useRef<HTMLInputElement>(null!)
+	const navigate = useNavigate()
 	const hasCartItems = context.cartItems.length > 0
 
 	const quantityCartItems = useMemo(
@@ -43,6 +43,9 @@ const Header = () => {
 			) || 0,
 		[context.cartItems]
 	)
+
+	const onSearch = () =>
+		navigate(`/search?query=${inputRef.current?.value || ''}`)
 
 	return (
 		<HStack
@@ -67,17 +70,31 @@ const Header = () => {
 			</LinkBox>
 
 			<InputGroup flex={1} size="md">
-				<Input placeholder="Busque aqui" pr="4.5rem" />
+				<Input
+					ref={inputRef}
+					_placeholder={{
+						color: 'gray.50',
+					}}
+					focusBorderColor="white"
+					onKeyUp={event => {
+						if (event.keyCode === 13) {
+							// Cancel the default action, if needed
+							event.preventDefault()
+							// Trigger the button element with a click
+							onSearch()
+						}
+					}}
+					placeholder="Busque aqui"
+					pr="4.5rem"
+				/>
 				<InputRightElement width="4.5rem">
 					<LinkBox>
-						<LinkOverlay as={RouterLink} to="/search">
-							<IconButton
-								aria-label="search"
-								colorScheme="transparent"
-								icon={<SearchIcon />}
-								onClick={handleClick}
-							/>
-						</LinkOverlay>
+						<IconButton
+							aria-label="search"
+							colorScheme="transparent"
+							icon={<SearchIcon />}
+							onClick={onSearch}
+						/>
 					</LinkBox>
 				</InputRightElement>
 			</InputGroup>
