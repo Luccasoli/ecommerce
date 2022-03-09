@@ -1,8 +1,37 @@
-import { Flex, Grid, HStack, Text } from '@chakra-ui/react'
+import { Flex, Grid, HStack, IconButton, Input, Text } from '@chakra-ui/react'
 import { ProductItemCard } from '@home/ProductItemCard'
 import { useFetch } from '@home/useFetch'
 import Header from '@host/Header'
 import { useLocation } from 'react-router-dom'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+
+const Filters = () => (
+	<Flex
+		bg="white"
+		borderRadius="lg"
+		borderWidth="1px"
+		boxShadow="md"
+		flex="1"
+		flexDir="column"
+		minH="50vh"
+		overflow="hidden"
+		p={4}
+	>
+		<Text fontSize="2xl">Preço</Text>
+		<Flex alignItems="center" gap="2">
+			<Input placeholder="Mínimo" size="sm" />
+			<Input placeholder="Máximo" size="sm" />
+			<IconButton
+				aria-label="filter-price"
+				colorScheme="teal"
+				icon={<ChevronRightIcon />}
+				onClick={() => {}}
+				size="sm"
+				variant="outline"
+			/>
+		</Flex>
+	</Flex>
+)
 
 export const SearchPage = () => {
 	const { data, loading, error } = useFetch(
@@ -36,7 +65,7 @@ export const SearchPage = () => {
 	}
 
 	return (
-		<Flex flexDir="column">
+		<Flex bg="gray.50" flexDir="column">
 			<Header />
 			<Text fontSize="2xl" p="16px">
 				Resultado da busca: <Text as="strong">aspirador de pó</Text>
@@ -48,16 +77,7 @@ export const SearchPage = () => {
 				px="16px"
 				spacing={20}
 			>
-				<Flex border="1px solid black" flex="1" minH="50vh" p={4}>
-					<Text>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi eum
-						nam dolores veritatis, deserunt quia quisquam, ex tenetur explicabo
-						magnam saepe, dolorem dicta rem dolorum laudantium provident animi
-						rerum at quod fugiat. Pariatur illo nostrum ipsa quam quidem? Error
-						aut eveniet dignissimos magni hic laborum repellat animi ipsum
-						impedit molestiae.
-					</Text>
-				</Flex>
+				<Filters />
 				{renderSearch()}
 			</HStack>
 		</Flex>
