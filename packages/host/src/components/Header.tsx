@@ -24,7 +24,11 @@ import { useCart } from '@host/useCart'
 import { TCartContext } from '@shared/types'
 import React, { useMemo } from 'react'
 import { FiBookmark, FiUser } from 'react-icons/fi'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import {
+	Link as RouterLink,
+	useNavigate,
+	useSearchParams,
+} from 'react-router-dom'
 import { CartItem } from './CartItem'
 import { CartWithBadge } from './CartWithBadge'
 
@@ -34,6 +38,7 @@ const Header = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null!)
 	const navigate = useNavigate()
 	const hasCartItems = context.cartItems.length > 0
+	const [searchParams] = useSearchParams()
 
 	const quantityCartItems = useMemo(
 		() =>
@@ -75,12 +80,11 @@ const Header = () => {
 					_placeholder={{
 						color: 'gray.50',
 					}}
+					defaultValue={searchParams.get('query') || ''}
 					focusBorderColor="white"
 					onKeyUp={event => {
-						if (event.keyCode === 13) {
-							// Cancel the default action, if needed
+						if (event.code === 'Enter') {
 							event.preventDefault()
-							// Trigger the button element with a click
 							onSearch()
 						}
 					}}
