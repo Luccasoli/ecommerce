@@ -12,23 +12,21 @@ export const ProductItemCard = ({ product }: TProductItemCardProps) => {
 	const context = useCart()
 
 	return (
-		<LinkBox
-			key={product.id}
-			as={RouterLink}
-			to={`/product_details/${product.id}`}
-		>
-			<Image mb="20px" src={product.image} />
+		<Box key={product.id}>
+			<LinkBox as={RouterLink} to={`/product_details/${product.id}`}>
+				<Image mb="20px" src={product.image} />
+			</LinkBox>
 			<Flex justifyContent="space-between">
-				<Box>
+				<LinkBox as={RouterLink} to={`/product_details/${product.id}`}>
 					<Text>{product.name}</Text>
 					<Text>{product.price}</Text>
-				</Box>
+				</LinkBox>
 				<IconButton
 					aria-label="add-to-cart"
 					icon={<FiShoppingCart />}
 					onClick={() => context.addToCart(product)}
 				/>
 			</Flex>
-		</LinkBox>
+		</Box>
 	)
 }
