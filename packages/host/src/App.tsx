@@ -10,6 +10,7 @@ const HomePage = lazy(() => import('@home/Home'))
 const SearchPage = lazy(() => import('@search/Search'))
 const AuthPage = lazy(() => import('@auth/Auth'))
 const ProductDetailsPage = lazy(() => import('@product_details/ProductDetails'))
+const PaymentPage = lazy(() => import('@payment/Payment'))
 
 const breakpoints = createBreakpoints({
 	sm: '320px',
@@ -74,6 +75,16 @@ export const App = () => (
 							</ErrorHandler>
 						}
 						path="/auth"
+					/>
+					<Route
+						element={
+							<ErrorHandler errorFallback={<ErrorPage />}>
+								<Suspense fallback={<div>Carregando...</div>}>
+									<PaymentPage />
+								</Suspense>
+							</ErrorHandler>
+						}
+						path="/payment"
 					/>
 					<Route
 						element={

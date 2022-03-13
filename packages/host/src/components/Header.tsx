@@ -133,7 +133,7 @@ const Header = () => {
 								)}
 							</PopoverBody>
 							{hasCartItems && (
-								<Button as={RouterLink} colorScheme="orange" to="/">
+								<Button as={RouterLink} colorScheme="orange" to="/payment">
 									Fechar pedido
 								</Button>
 							)}

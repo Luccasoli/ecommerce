@@ -16,6 +16,7 @@
 			"@product_details/ProductDetails": [
 				"./packages/product_details/src/pages/ProductDetails"
 			],
+			"@payment/Payment": ["./packages/payment/src/pages/Payment"],
 			"@auth/Auth": ["./packages/auth/src/pages/Auth"]
 		}
 	}
