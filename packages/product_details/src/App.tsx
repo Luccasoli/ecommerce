@@ -3,7 +3,7 @@ import { CartProvider } from '@host/CartProvider'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ProductDetailsPage } from './pages/ProductDetails'
 
-const DEFAULT_PATH = '/:productId'
+const DEFAULT_PATH = '/product_details/:productId'
 
 export const App = () => (
 	<ChakraProvider>
