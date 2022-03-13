@@ -11,7 +11,12 @@ export const App = () => (
 			<BrowserRouter>
 				<Routes>
 					<Route path={DEFAULT_PATH} element={<ProductDetailsPage />} />
-					<Route path="*" element={<Navigate to={DEFAULT_PATH} />} />
+					<Route
+						path="*"
+						element={
+							<Navigate to={DEFAULT_PATH.replace(':productId', '123')} />
+						}
+					/>
 				</Routes>
 			</BrowserRouter>
 		</CartProvider>

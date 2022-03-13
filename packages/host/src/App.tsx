@@ -78,7 +78,7 @@ export const App = () => (
 								</Suspense>
 							</ErrorHandler>
 						}
-						path="/product_details"
+						path="/product_details/:productId"
 					/>
 				</Routes>
 			</BrowserRouter>
