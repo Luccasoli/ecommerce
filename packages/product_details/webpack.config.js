@@ -20,7 +20,7 @@ module.exports = env => {
 		},
 		mode: devMode ? 'development' : 'production',
 		devServer: {
-			port: 8080,
+			port: 8084,
 			historyApiFallback: true,
 			headers: {
 				'Access-Control-Allow-Origin': '*',
@@ -57,17 +57,10 @@ module.exports = env => {
 				},
 			}),
 			new ModuleFederationPlugin({
-				name: 'host',
+				name: 'product_details',
 				filename: 'remoteEntry.js',
 				exposes: {
-					'./useCart': path.resolve('src', 'context', 'Cart', 'useCart'),
-					'./CartProvider': path.resolve(
-						'src',
-						'context',
-						'Cart',
-						'CartProvider'
-					),
-					'./Header': path.resolve('src', 'components', 'Header'),
+					'./ProductDetails': path.resolve('src', 'pages', 'ProductDetails'),
 				},
 				shared: {
 					...dependencies,
@@ -75,23 +68,10 @@ module.exports = env => {
 				remotes: devMode
 					? {
 							'@host': 'host@http://localhost:8080/remoteEntry.js',
-							'@home': 'home@http://localhost:8081/remoteEntry.js',
-							'@search': 'search@http://localhost:8082/remoteEntry.js',
-							'@auth': 'auth@http://localhost:8083/remoteEntry.js',
-							'@product_details':
-								'product_details@http://localhost:8084/remoteEntry.js',
 					  }
 					: {
 							'@host':
-								'home@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
-							'@home':
-								'home@https://home-tcc-ecommerce.netlify.app/remoteEntry.js',
-							'@search':
-								'search@https://search-tcc-ecommerce.netlify.app/remoteEntry.js',
-							'@auth':
-								'auth@https://auth-tcc-ecommerce.netlify.app/remoteEntry.js',
-							'@product_details':
-								'product_details@https://product_details-tcc-ecommerce.netlify.app/remoteEntry.js',
+								'host@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
 					  },
 			}),
 		],

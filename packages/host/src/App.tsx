@@ -9,6 +9,7 @@ import { ErrorPage } from './pages/ErrorPage'
 const HomePage = lazy(() => import('@home/Home'))
 const SearchPage = lazy(() => import('@search/Search'))
 const AuthPage = lazy(() => import('@auth/Auth'))
+const ProductDetailsPage = lazy(() => import('@product_details/ProductDetails'))
 
 const breakpoints = createBreakpoints({
 	sm: '320px',
@@ -69,7 +70,16 @@ export const App = () => (
 						}
 						path="/auth"
 					/>
-					{/* <Route path="/search" element={<SearchPage />} /> */}
+					<Route
+						element={
+							<ErrorHandler errorFallback={<ErrorPage />}>
+								<Suspense fallback={<div>Carregando...</div>}>
+									<ProductDetailsPage />
+								</Suspense>
+							</ErrorHandler>
+						}
+						path="/product_details"
+					/>
 				</Routes>
 			</BrowserRouter>
 		</CartProvider>

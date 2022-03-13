@@ -13,6 +13,9 @@
 			],
 			"@home/useFetch": ["./packages/home/src/hooks/useFetch"],
 			"@search/Search": ["./packages/search/src/pages/Search"],
+			"@product_details/ProductDetails": [
+				"./packages/product_details/src/pages/ProductDetails"
+			],
 			"@auth/Auth": ["./packages/auth/src/pages/Auth"]
 		}
 	}
