@@ -1,7 +1,6 @@
 import { SearchIcon } from '@chakra-ui/icons'
 import {
 	Button,
-	Flex,
 	Heading,
 	HStack,
 	IconButton,
@@ -9,7 +8,6 @@ import {
 	InputGroup,
 	InputRightElement,
 	LinkBox,
-	LinkOverlay,
 	Popover,
 	PopoverArrow,
 	PopoverBody,
