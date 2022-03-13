@@ -33,6 +33,11 @@ const theme = extendTheme({
 			},
 		},
 	},
+	sizes: {
+		container: {
+			'2xl': '1920px',
+		},
+	},
 })
 
 export const App = () => (
