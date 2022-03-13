@@ -18,7 +18,9 @@ export const HomePage = () => {
 			return <Text>Error!</Text>
 		}
 
-		return data?.map(product => <ProductItemCard product={product} />)
+		return data?.map(product => (
+			<ProductItemCard key={product.id} product={product} />
+		))
 	}
 
 	return (
