@@ -64,14 +64,10 @@ const Header = () => {
 			spacing={20}
 			wrap="wrap"
 		>
-			<LinkBox>
-				<Flex align="center" mr={5}>
-					<Heading as="h1" letterSpacing="tighter" size="lg">
-						<LinkOverlay as={RouterLink} to="/">
-							Microfrontend Store
-						</LinkOverlay>
-					</Heading>
-				</Flex>
+			<LinkBox as={RouterLink} to="/">
+				<Heading as="h1" letterSpacing="tighter" size="lg">
+					Microfrontend Store
+				</Heading>
 			</LinkBox>
 
 			<InputGroup flex={1} size="md">
