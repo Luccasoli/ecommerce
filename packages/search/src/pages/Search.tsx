@@ -95,12 +95,12 @@ export const SearchPage = () => {
 				{data
 					?.filter(item => {
 						const params = new URLSearchParams(location.search)
-						const search = params.get('query')!
+						const search = params.get('query') || ''
 
 						return item.name.toLowerCase().includes(search.toLowerCase())
 					})
 					.map(product => (
-						<ProductItemCard product={product} />
+						<ProductItemCard key={product.id} product={product} />
 					))}
 			</Grid>
 		)
