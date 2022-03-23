@@ -68,6 +68,7 @@ module.exports = env => {
 						'CartProvider'
 					),
 					'./Header': path.resolve('src', 'components', 'Header'),
+					'./useUser': path.resolve('src', 'hooks', 'useUser'),
 				},
 				shared: {
 					...dependencies,

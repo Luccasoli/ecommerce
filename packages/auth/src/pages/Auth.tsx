@@ -10,7 +10,9 @@ import {
 	StackProps,
 } from '@chakra-ui/react'
 import Header from '@host/Header'
+import { useUser } from '@host/useUser'
 import { Helmet } from 'react-helmet'
+import { useNavigate } from 'react-router-dom'
 
 const SectionHeader = ({ children, ...props }: HeadingProps) => (
 	<Heading
@@ -48,136 +50,156 @@ const Card = ({ children, ...props }: FlexProps) => (
 	</Flex>
 )
 
-export const AuthPage = () => (
-	<>
-		<Helmet>
-			<meta charSet="utf-8" />
-			<title>Tela Inicial</title>
-		</Helmet>
-		<Flex bg="gray.50" flexDirection="column" minH="100vh">
-			<Header />
-			<Flex
-				as="main"
-				flex={1}
-				flexDirection="column"
-				marginX="auto"
-				maxW="100%"
-				p="16px"
-				width="container.lg"
-			>
-				<Heading as="h2" pb="36px" size="lg">
-					Autenticação
-				</Heading>
+export const AuthPage = () => {
+	const [user, setUser] = useUser()
+
+	const navigate = useNavigate()
+
+	return (
+		<>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Tela Inicial</title>
+			</Helmet>
+			<Flex bg="gray.50" flexDirection="column" minH="100vh">
+				<Header />
 				<Flex
-					alignItems={{ md: 'flex-start' }}
+					as="main"
 					flex={1}
-					flexDirection={{
-						sm: 'column',
-						md: 'row',
-					}}
-					gap={8}
-					justifyContent="center"
+					flexDirection="column"
+					marginX="auto"
+					maxW="100%"
+					p="16px"
+					width="container.lg"
 				>
-					<Card>
-						<SectionHeader>Cadastro</SectionHeader>
-						<Form>
-							<FormControl isRequired>
-								<FormLabel htmlFor="name">Nome Completo</FormLabel>
-								<Input
-									id="name"
-									name="name"
-									placeholder="Lucas Mesquita"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="email">E-mail</FormLabel>
-								<Input
-									id="email"
-									name="email"
-									placeholder="lucas.mesquita@gmail.com"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="password">Senha</FormLabel>
-								<Input
-									id="password"
-									name="password"
-									placeholder="********"
-									type="password"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="confirmPassword">Repetir a Senha</FormLabel>
-								<Input
-									id="confirmPassword"
-									name="confirmPassword"
-									placeholder="********"
-									type="password"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="cpf">CPF</FormLabel>
-								<Input
-									id="cpf"
-									name="cpf"
-									placeholder="45X.XXX.XXX-7X"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="cep">CEP</FormLabel>
-								<Input
-									id="cep"
-									name="cep"
-									placeholder="XXXXX-XXX"
-									variant="filled"
-								/>
-							</FormControl>
-							<Button colorScheme="teal" mt={8} type="submit" w="100%">
-								Concluir
-							</Button>
-						</Form>
-					</Card>
-					<Card>
-						<SectionHeader>Acesso</SectionHeader>
-						<Form>
-							<FormControl isRequired>
-								<FormLabel htmlFor="email">E-mail</FormLabel>
-								<Input
-									id="email"
-									placeholder="lucas.mesquita@gmail.com"
-									variant="filled"
-								/>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel htmlFor="password">Senha</FormLabel>
-								<Input
-									colorScheme="teal"
-									id="password"
-									placeholder="****"
-									type="password"
-									variant="filled"
-								/>
-							</FormControl>
-							<Button
-								colorScheme="teal"
-								mt={8}
-								type="submit"
-								variant="outline"
-								w="100%"
+					<Heading as="h2" pb="36px" size="lg">
+						Autenticação
+					</Heading>
+					<Flex
+						alignItems={{ md: 'flex-start' }}
+						flex={1}
+						flexDirection={{
+							sm: 'column',
+							md: 'row',
+						}}
+						gap={8}
+						justifyContent="center"
+					>
+						<Card>
+							<SectionHeader>Cadastro</SectionHeader>
+							<Form>
+								<FormControl isRequired>
+									<FormLabel htmlFor="name">Nome Completo</FormLabel>
+									<Input
+										id="name"
+										name="name"
+										placeholder="Lucas Mesquita"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="email">E-mail</FormLabel>
+									<Input
+										id="email"
+										name="email"
+										placeholder="lucas.mesquita@gmail.com"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="password">Senha</FormLabel>
+									<Input
+										id="password"
+										name="password"
+										placeholder="********"
+										type="password"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="confirmPassword">
+										Repetir a Senha
+									</FormLabel>
+									<Input
+										id="confirmPassword"
+										name="confirmPassword"
+										placeholder="********"
+										type="password"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="cpf">CPF</FormLabel>
+									<Input
+										id="cpf"
+										name="cpf"
+										placeholder="45X.XXX.XXX-7X"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="cep">CEP</FormLabel>
+									<Input
+										id="cep"
+										name="cep"
+										placeholder="XXXXX-XXX"
+										variant="filled"
+									/>
+								</FormControl>
+								<Button colorScheme="teal" mt={8} type="submit" w="100%">
+									Concluir
+								</Button>
+							</Form>
+						</Card>
+						<Card>
+							<SectionHeader>Acesso</SectionHeader>
+							<Form
+								onSubmit={e => {
+									e.preventDefault()
+
+									setUser({
+										name: 'Lucas',
+										email: 'email@gmail.com',
+										token: 'token',
+									})
+
+									navigate('/')
+								}}
 							>
-								Entrar
-							</Button>
-						</Form>
-					</Card>
+								<FormControl isRequired>
+									<FormLabel htmlFor="email">E-mail</FormLabel>
+									<Input
+										id="email"
+										placeholder="lucas.mesquita@gmail.com"
+										variant="filled"
+									/>
+								</FormControl>
+								<FormControl isRequired>
+									<FormLabel htmlFor="password">Senha</FormLabel>
+									<Input
+										colorScheme="teal"
+										id="password"
+										placeholder="****"
+										type="password"
+										variant="filled"
+									/>
+								</FormControl>
+								<Button
+									colorScheme="teal"
+									mt={8}
+									type="submit"
+									variant="outline"
+									w="100%"
+								>
+									Entrar
+								</Button>
+							</Form>
+						</Card>
+					</Flex>
 				</Flex>
 			</Flex>
-		</Flex>
-	</>
-)
+		</>
+	)
+}
 
 export default AuthPage
