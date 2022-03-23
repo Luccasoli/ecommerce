@@ -1,6 +1,7 @@
 import { SearchIcon } from '@chakra-ui/icons'
 import {
 	Button,
+	Flex,
 	Heading,
 	HStack,
 	IconButton,
@@ -135,7 +136,7 @@ const Header = () => {
 					</Portal>
 				</Popover>
 
-				<Button
+				{/* <Button
 					as={RouterLink}
 					colorScheme="teal"
 					leftIcon={<FiUser size={20} />}
@@ -143,7 +144,24 @@ const Header = () => {
 					variant="solid"
 				>
 					Acessar
-				</Button>
+				</Button> */}
+				<Flex align="center" gap={2}>
+					<FiUser size={25} />
+					<Flex flexDir="column">
+						<Text fontSize="sm" fontWeight="bold">
+							Olá, Lucas
+						</Text>
+						<Flex align="baseline" gap={1}>
+							<Text as={RouterLink} fontSize="sm" to="/">
+								Minha conta
+							</Text>{' '}
+							|
+							<Text as={RouterLink} fontSize="sm" to="/">
+								Sair
+							</Text>
+						</Flex>
+					</Flex>
+				</Flex>
 			</HStack>
 		</HStack>
 	)
