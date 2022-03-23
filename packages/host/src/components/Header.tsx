@@ -34,7 +34,7 @@ import { CartWithBadge } from './CartWithBadge'
 
 const Header = () => {
 	const context = useCart() as TCartContext
-	const [user] = useUser()
+	const [user, setUser] = useUser()
 
 	const inputRef = React.useRef<HTMLInputElement>(null!)
 	const navigate = useNavigate()
@@ -150,7 +150,11 @@ const Header = () => {
 									Minha conta
 								</Text>{' '}
 								|
-								<Text as={RouterLink} fontSize="sm" to="/">
+								<Text
+									cursor="pointer"
+									fontSize="sm"
+									onClick={() => setUser(null)}
+								>
 									Sair
 								</Text>
 							</Flex>
