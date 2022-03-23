@@ -28,11 +28,13 @@ import {
 	useNavigate,
 	useSearchParams,
 } from 'react-router-dom'
+import { useUser } from '../hooks/useUser'
 import { CartItem } from './CartItem'
 import { CartWithBadge } from './CartWithBadge'
 
 const Header = () => {
 	const context = useCart() as TCartContext
+	const [user] = useUser()
 
 	const inputRef = React.useRef<HTMLInputElement>(null!)
 	const navigate = useNavigate()
@@ -136,32 +138,35 @@ const Header = () => {
 					</Portal>
 				</Popover>
 
-				{/* <Button
-					as={RouterLink}
-					colorScheme="teal"
-					leftIcon={<FiUser size={20} />}
-					to="/auth"
-					variant="solid"
-				>
-					Acessar
-				</Button> */}
-				<Flex align="center" gap={2}>
-					<FiUser size={25} />
-					<Flex flexDir="column">
-						<Text fontSize="sm" fontWeight="bold">
-							Olá, Lucas
-						</Text>
-						<Flex align="baseline" gap={1}>
-							<Text as={RouterLink} fontSize="sm" to="/">
-								Minha conta
-							</Text>{' '}
-							|
-							<Text as={RouterLink} fontSize="sm" to="/">
-								Sair
+				{user ? (
+					<Flex align="center" gap={2}>
+						<FiUser size={25} />
+						<Flex flexDir="column">
+							<Text fontSize="sm" fontWeight="bold">
+								Olá, Lucas
 							</Text>
+							<Flex align="baseline" gap={1}>
+								<Text as={RouterLink} fontSize="sm" to="/">
+									Minha conta
+								</Text>{' '}
+								|
+								<Text as={RouterLink} fontSize="sm" to="/">
+									Sair
+								</Text>
+							</Flex>
 						</Flex>
 					</Flex>
-				</Flex>
+				) : (
+					<Button
+						as={RouterLink}
+						colorScheme="teal"
+						leftIcon={<FiUser size={20} />}
+						to="/auth"
+						variant="solid"
+					>
+						Acessar
+					</Button>
+				)}
 			</HStack>
 		</HStack>
 	)

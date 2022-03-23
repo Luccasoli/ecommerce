@@ -6,19 +6,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "kill-port --port 8080,8081,8082,8083,8084,8085,3000 && lerna run --scope @tcc-ecommerce/* --parallel dev",
-		"build": "lerna run --scope @tcc-ecommerce/* --parallel build",
-		"ci:build:host": "lerna run --scope @tcc-ecommerce/host build",
-		"ci:build:home": "lerna run --scope @tcc-ecommerce/home build",
-		"ci:build:search": "lerna run --scope @tcc-ecommerce/search build"
+		"build": "lerna run --scope @tcc-ecommerce/* --parallel build"
 	},
 	"workspaces": [
 		"packages/host",
 		"packages/home",
 		"packages/server",
-		"packages/auth",
-		"packages/search",
-		"packages/product_details",
-		"packages/payment"
+		"packages/payment",
+		"packages/auth"
 	],
 	"devDependencies": {
 		"@babel/cli": "^7.16.0",
