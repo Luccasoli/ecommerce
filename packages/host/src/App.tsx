@@ -1,8 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { CartProvider } from '@host/CartProvider'
-import { lazy, Suspense } from 'react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
+import { CartProvider } from '@host/CartProvider'
+import { StepsStyleConfig } from '@payment/Stepper'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ErrorHandler } from './components/ErrorBoundary'
 import { ErrorPage } from './pages/ErrorPage'
 
@@ -23,6 +24,7 @@ const breakpoints = createBreakpoints({
 const theme = extendTheme({
 	breakpoints,
 	components: {
+		Steps: StepsStyleConfig,
 		Popover: {
 			variants: {
 				responsive: {

@@ -17,6 +17,7 @@
 				"./packages/product_details/src/pages/ProductDetails"
 			],
 			"@payment/Payment": ["./packages/payment/src/pages/Payment"],
+			"@payment/Stepper": ["./packages/payment/src/components/Stepper"],
 			"@auth/Auth": ["./packages/auth/src/pages/Auth"]
 		}
 	}

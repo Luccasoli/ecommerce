@@ -61,17 +61,25 @@ module.exports = env => {
 				filename: 'remoteEntry.js',
 				exposes: {
 					'./Payment': path.resolve('src', 'pages', 'Payment'),
+					'./Stepper': path.resolve('src', 'components', 'Stepper'),
 				},
 				shared: {
-					...dependencies,
+					...Object.fromEntries(
+						Object.entries(dependencies).filter(
+							([key]) => key !== 'chakra-ui-steps'
+						)
+					),
 				},
 				remotes: devMode
 					? {
 							'@host': 'host@http://localhost:8080/remoteEntry.js',
+							'@payment': 'payment@http://localhost:8085/remoteEntry.js',
 					  }
 					: {
 							'@host':
 								'host@https://host-tcc-ecommerce.netlify.app/remoteEntry.js',
+							'@payment':
+								'payment@https://payment-tcc-ecommerce.netlify.app/remoteEntry.js',
 					  },
 			}),
 		],
