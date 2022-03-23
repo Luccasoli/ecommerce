@@ -21,10 +21,21 @@ const breakpoints = createBreakpoints({
 	'2xl': '1536px',
 })
 
+const CustomSteps = {
+	...StepsStyleConfig,
+	baseStyle: (props: any) => ({
+		...StepsStyleConfig.baseStyle(props),
+		steps: {
+			...StepsStyleConfig.baseStyle(props).steps,
+			flex: 0,
+		},
+	}),
+}
+
 const theme = extendTheme({
 	breakpoints,
 	components: {
-		Steps: StepsStyleConfig,
+		Steps: CustomSteps,
 		Popover: {
 			variants: {
 				responsive: {
