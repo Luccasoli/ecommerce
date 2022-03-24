@@ -3,6 +3,7 @@ import { Button, Flex, Heading, LinkBox, Text } from '@chakra-ui/react'
 import { Helmet } from 'react-helmet'
 import { Link as RouterLink } from 'react-router-dom'
 import { Step, Steps, useSteps } from '@payment/Stepper'
+import { FiBookmark, FiUser } from 'react-icons/fi'
 
 const content = (
 	<Flex py={4} flex={1}>
@@ -17,9 +18,14 @@ const content = (
 const steps = [
 	{ label: 'Carrinho', content },
 	{ label: 'Identificação', content },
-	{ label: 'Pagamento', content },
+	{ label: 'Pagamento', content, description: 'oi' },
 	{ label: 'Confirmação', content },
-	{ label: 'Conclusão', content },
+	{
+		label: 'Conclusão',
+		content,
+		icon: <FiBookmark size={20} />,
+		description: 'oi',
+	},
 ]
 
 export const PaymentPage = () => {
