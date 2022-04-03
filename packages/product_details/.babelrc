@@ -1,8 +1,0 @@
-{
-	"presets": [
-		// TODO: add polyfill: https://medium.com/swlh/2020-settings-of-react-typescript-project-with-webpack-and-babel-403c92feaa06#:~:text=see%20Hello%20React%20!-,Transpile%20and%20Polyfill%20to%20ES5,-So%20far%2C%20your
-		"@babel/preset-env",
-		["@babel/preset-react", { "runtime": "automatic" }],
-		"@babel/preset-typescript"
-	]
-}

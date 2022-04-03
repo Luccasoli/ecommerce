@@ -8,9 +8,9 @@ import { ErrorHandler } from './components/ErrorBoundary'
 import { ErrorPage } from './pages/ErrorPage'
 
 const HomePage = lazy(() => import('@home/Home'))
-const SearchPage = lazy(() => import('@search/Search'))
+const SearchPage = lazy(() => import('@home/Search'))
+const ProductDetailsPage = lazy(() => import('@home/ProductDetails'))
 const AuthPage = lazy(() => import('@auth/Auth'))
-const ProductDetailsPage = lazy(() => import('@product_details/ProductDetails'))
 const PaymentPage = lazy(() => import('@payment/Payment'))
 
 const breakpoints = createBreakpoints({

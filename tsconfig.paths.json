@@ -9,14 +9,12 @@
 			"@host/Header": ["./packages/host/src/components/Header"],
 			"@host/useUser": ["./packages/host/src/hooks/useUser"],
 			"@home/Home": ["./packages/home/src/pages/Home"],
+			"@home/Search": ["./packages/home/src/pages/Search"],
+			"@home/ProductDetails": ["./packages/home/src/pages/ProductDetails"],
 			"@home/ProductItemCard": [
 				"./packages/home/src/components/ProductItemCard"
 			],
 			"@home/useFetch": ["./packages/home/src/hooks/useFetch"],
-			"@search/Search": ["./packages/search/src/pages/Search"],
-			"@product_details/ProductDetails": [
-				"./packages/product_details/src/pages/ProductDetails"
-			],
 			"@payment/Payment": ["./packages/payment/src/pages/Payment"],
 			"@payment/Stepper": ["./packages/payment/src/components/Stepper"],
 			"@auth/Auth": ["./packages/auth/src/pages/Auth"]

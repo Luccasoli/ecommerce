@@ -61,6 +61,8 @@ module.exports = env => {
 				filename: 'remoteEntry.js',
 				exposes: {
 					'./Home': path.resolve('src', 'pages', 'Home'),
+					'./Search': path.resolve('src', 'pages', 'Search'),
+					'./ProductDetails': path.resolve('src', 'pages', 'ProductDetails'),
 					'./useFetch': path.resolve('src', 'hooks', 'useFetch'),
 					'./ProductItemCard': path.resolve(
 						'src',
