@@ -10,6 +10,7 @@ export default class UserCreditCards extends BaseSchema {
       table.string('number').notNullable()
       table.string('expiration_date').notNullable()
       table.string('cvv').notNullable()
+      table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

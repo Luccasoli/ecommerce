@@ -14,6 +14,7 @@ export default class UserAddresses extends BaseSchema {
       table.string('state').notNullable()
       table.string('postal_code').notNullable()
       table.string('country').notNullable()
+      table.integer('user_id').unsigned().references('users.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

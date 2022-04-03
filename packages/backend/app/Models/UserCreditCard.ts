@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import User from './User'
 
-export default class CreditCard extends BaseModel {
+export default class UserCreditCard extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
@@ -16,6 +17,9 @@ export default class CreditCard extends BaseModel {
 
   @column()
   public cvv: string
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
