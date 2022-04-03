@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import Image from './Image'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -22,6 +23,9 @@ export default class Product extends BaseModel {
 
   @column()
   public image_alt: string
+
+  @hasMany(() => Image)
+  public images: HasMany<typeof Image>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

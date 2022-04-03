@@ -8,6 +8,7 @@ export default class Images extends BaseSchema {
       table.increments('id')
       table.string('image_url').notNullable()
       table.string('image_alt').notNullable()
+      table.integer('product_id').unsigned().references('products.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
