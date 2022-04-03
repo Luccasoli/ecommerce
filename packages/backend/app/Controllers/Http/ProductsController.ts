@@ -1,11 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Product from 'App/Models/Product'
 
 export default class ProductsController {
   public async index() {
-    return [{ name: 'Adonis' }]
+    return Product.all()
   }
 
   public async show({ params }: HttpContextContract) {
-    return { name: 'Product', productId: params.productId }
+    return Product.findOrFail(params.id)
   }
 }
