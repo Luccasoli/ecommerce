@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import Product from './Product'
 
-export default class Image extends BaseModel {
+export default class ProductImage extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
