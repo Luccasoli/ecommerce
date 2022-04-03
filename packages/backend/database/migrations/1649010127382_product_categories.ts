@@ -10,7 +10,6 @@ export default class ProductCategories extends BaseSchema {
       table.text('description').notNullable()
       table.string('image_url').notNullable()
       table.string('image_alt').notNullable()
-      table.integer('product_id').unsigned().references('products.id').onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

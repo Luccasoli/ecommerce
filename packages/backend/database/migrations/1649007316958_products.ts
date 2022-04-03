@@ -12,6 +12,11 @@ export default class Products extends BaseSchema {
       table.integer('cost_price').notNullable()
       table.string('image_url').notNullable()
       table.string('image_alt').notNullable()
+      table
+        .integer('category_id')
+        .unsigned()
+        .references('product_categories.id')
+        .onDelete('CASCADE')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
