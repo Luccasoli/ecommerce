@@ -24,16 +24,16 @@ export default class Product extends BaseModel {
   public description: string
 
   @column()
-  public selling_price: number
+  public sellingPrice: number
 
   @column()
-  public cost_price: number
+  public costPrice: number
 
   @column()
-  public image_url: string
+  public imageUrl: string
 
   @column()
-  public image_alt: string
+  public imageAlt: string
 
   @hasMany(() => ProductImage)
   public images: HasMany<typeof ProductImage>

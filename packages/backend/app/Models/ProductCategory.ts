@@ -13,10 +13,10 @@ export default class ProductCategory extends BaseModel {
   public description: string
 
   @column()
-  public image_url: string
+  public imageUrl: string
 
   @column()
-  public image_alt: string
+  public imageAlt: string
 
   @hasMany(() => Product)
   public products: HasMany<typeof Product>
