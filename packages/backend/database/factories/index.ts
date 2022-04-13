@@ -12,12 +12,14 @@ export const ProductCategorieFactory = Factory.define(ProductCategory, ({ faker 
   const name = faker.commerce.department()
 
   return {
-    image_alt: name,
-    image_url: faker.image.imageUrl(),
+    imageAlt: name,
+    imageUrl: faker.image.imageUrl(),
     name: name,
     category: faker.commerce.department(),
   }
-}).build()
+})
+  .relation('products', () => ProductFactory)
+  .build()
 
 export const ProductFactory = Factory.define(Product, async ({ faker }) => {
   const name = faker.commerce.productName()
@@ -33,14 +35,17 @@ export const ProductFactory = Factory.define(Product, async ({ faker }) => {
     // pick a random category
     category: await ProductCategory.find(randomIntFromInterval(10)),
   }
-}).build()
+})
+  .relation('images', () => ProductImageFactory)
+  .build()
 
 export const ProductImageFactory = Factory.define(ProductImage, async ({ faker }) => {
   const name = faker.commerce.department()
 
   return {
-    image_alt: name,
-    image_url: faker.image.imageUrl(),
-    product: await ProductCategory.find(randomIntFromInterval(30)),
+    imageAlt: name,
+    imageUrl: faker.image.imageUrl(),
   }
-}).build()
+})
+  .relation('product', () => ProductFactory)
+  .build()
