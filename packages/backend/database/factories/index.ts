@@ -38,7 +38,7 @@ export const ProductCategoryFactory = Factory.define(ProductCategory, ({ faker }
     imageAlt: name,
     imageUrl: faker.image.imageUrl(),
     name: name,
-    category: faker.commerce.department(),
+    description: faker.lorem.paragraph(),
   }
 })
   .relation('products', () => ProductFactory)

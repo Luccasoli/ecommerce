@@ -12,8 +12,11 @@ export default class ProductImage extends BaseModel {
   @column()
   public imageAlt: string
 
+  @column()
+  public productId: number
+
   @belongsTo(() => Product)
-  public productId: BelongsTo<typeof Product>
+  public product: BelongsTo<typeof Product>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

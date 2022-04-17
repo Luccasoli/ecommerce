@@ -38,8 +38,11 @@ export default class Product extends BaseModel {
   @hasMany(() => ProductImage)
   public images: HasMany<typeof ProductImage>
 
+  @column()
+  public productCategoryId: number
+
   @belongsTo(() => ProductCategory)
-  public productCategoryId: BelongsTo<typeof ProductCategory>
+  public category: BelongsTo<typeof ProductCategory>
 
   @manyToMany(() => User)
   public savedByUser: ManyToMany<typeof User>

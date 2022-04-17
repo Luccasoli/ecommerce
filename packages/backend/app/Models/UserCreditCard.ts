@@ -18,8 +18,11 @@ export default class UserCreditCard extends BaseModel {
   @column()
   public cvv: string
 
+  @column()
+  public userId: number
+
   @belongsTo(() => User)
-  public userId: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

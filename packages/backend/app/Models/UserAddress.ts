@@ -30,8 +30,11 @@ export default class UserAddress extends BaseModel {
   @column()
   public country: string
 
+  @column()
+  public userId: number
+
   @belongsTo(() => User)
-  public userId: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
