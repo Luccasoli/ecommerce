@@ -32,7 +32,7 @@ export const ProductFactory = Factory.define(Product, async ({ faker }) => {
   .relation('images', () => ProductImageFactory)
   .build()
 
-export const ProductCategorieFactory = Factory.define(ProductCategory, ({ faker }) => {
+export const ProductCategoryFactory = Factory.define(ProductCategory, ({ faker }) => {
   const name = faker.commerce.department()
 
   return {
