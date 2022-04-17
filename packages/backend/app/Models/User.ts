@@ -1,8 +1,18 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasMany, hasMany, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  HasMany,
+  hasMany,
+  HasOne,
+  hasOne,
+  ManyToMany,
+  manyToMany,
+} from '@ioc:Adonis/Lucid/Orm'
 import Product from './Product'
 import UserAddress from './UserAddress'
 import UserCreditCard from './UserCreditCard'
+import Auth from './Auth'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -15,13 +25,13 @@ export default class User extends BaseModel {
   public lastName: string
 
   @column()
-  public email: string
-
-  @column()
   public birthday: Date
 
   @column()
   public CPF: string
+
+  @hasOne(() => Auth)
+  public auth: HasOne<typeof Auth>
 
   @manyToMany(() => Product)
   public savedProducts: ManyToMany<typeof Product>
