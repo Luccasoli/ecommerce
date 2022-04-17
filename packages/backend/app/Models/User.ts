@@ -18,7 +18,7 @@ export default class User extends BaseModel {
   public email: string
 
   @column()
-  public birthday: DateTime
+  public birthday: Date
 
   @column()
   public CPF: string

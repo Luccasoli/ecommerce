@@ -13,7 +13,7 @@ export default class UserCreditCard extends BaseModel {
   public number: string
 
   @column()
-  public expirationDate: string
+  public expirationDate: Date
 
   @column()
   public cvv: string
