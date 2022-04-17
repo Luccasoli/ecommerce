@@ -39,7 +39,7 @@ export default class Product extends BaseModel {
   public images: HasMany<typeof ProductImage>
 
   @column()
-  public productCategoryId: number
+  public categoryId: number
 
   @belongsTo(() => ProductCategory)
   public category: BelongsTo<typeof ProductCategory>

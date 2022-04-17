@@ -18,7 +18,9 @@ export default class ProductCategory extends BaseModel {
   @column()
   public imageAlt: string
 
-  @hasMany(() => Product)
+  @hasMany(() => Product, {
+    foreignKey: 'categoryId',
+  })
   public products: HasMany<typeof Product>
 
   @column.dateTime({ autoCreate: true })
