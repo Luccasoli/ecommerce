@@ -1,9 +1,8 @@
 import Factory from '@ioc:Adonis/Lucid/Factory'
-import ProductCategory from 'App/Models/ProductCategory'
 import Product from 'App/Models/Product'
+import ProductCategory from 'App/Models/ProductCategory'
 import ProductImage from 'App/Models/ProductImage'
 import User from 'App/Models/User'
-import { DateTime } from 'luxon'
 import UserAddress from 'App/Models/UserAddress'
 import UserCreditCard from 'App/Models/UserCreditCard'
 
