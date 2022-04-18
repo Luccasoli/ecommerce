@@ -4,9 +4,7 @@ Route.get('/me', async () => {
   return { name: 'Adonis' }
 })
 
-Route.post('/register', async () => {
-  return { name: 'Adonis' }
-})
+Route.post('/register', 'AuthController.create')
 
 Route.post('/login', async () => {
   return { name: 'Adonis' }
