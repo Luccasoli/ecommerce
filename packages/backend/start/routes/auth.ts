@@ -1,11 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/me', async () => {
-  return { name: 'Adonis' }
-})
+Route.get('/me', 'AuthController.index').middleware('auth')
 
 Route.post('/register', 'AuthController.create')
 
-Route.post('/login', async () => {
-  return { name: 'Adonis' }
-})
+Route.post('/login', 'AuthController.login')
