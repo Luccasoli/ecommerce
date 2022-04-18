@@ -76,9 +76,12 @@ const Filters = () => {
 }
 
 export const SearchPage = () => {
-	const { data, loading, error } = useFetch(
-		'http://localhost:3000/products?_page=1'
-	)
+	const {
+		data: response,
+		loading,
+		error,
+	} = useFetch('http://localhost:3000/products?_page=1')
+	const data = response?.payload?.data
 	const location = useLocation()
 
 	function renderSearch() {

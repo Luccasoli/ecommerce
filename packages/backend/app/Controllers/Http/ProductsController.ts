@@ -1,5 +1,4 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
 import Product from 'App/Models/Product'
 
 export default class ProductsController {
@@ -9,11 +8,20 @@ export default class ProductsController {
       page?: number
     }
 
-    const payload = await Product.query().paginate(page || 1, limit || 20)
+    const payload = (await Product.query().paginate(page || 1, limit || 20)).toJSON()
+
+    // filter response
+    payload.data = payload.data.map((product) => {
+      return {
+        ...product.toJSON(),
+        price: product.sellingPrice / 100,
+        image: product.imageUrl,
+      }
+    })
 
     return ctx.response.status(200).json({
       message: 'List of products',
-      payload,
+      payload: payload,
     })
   }
 

@@ -6,7 +6,7 @@ import { useFetch } from '../hooks/useFetch'
 
 export const HomePage = () => {
 	const { data, loading, error } = useFetch(
-		'http://localhost:3000/products?_page=1'
+		'http://127.0.0.1:3333/products?limit=10&page=1'
 	)
 
 	const renderProducts = () => {
@@ -18,7 +18,7 @@ export const HomePage = () => {
 			return <Text>Error!</Text>
 		}
 
-		return data?.map(product => (
+		return data?.payload.data?.map(product => (
 			<ProductItemCard key={product.id} product={product} />
 		))
 	}

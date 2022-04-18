@@ -6,7 +6,7 @@ type Error = {
 }
 
 export const useFetch = (url: string) => {
-	const [data, setData] = React.useState<TProduct[]>()
+	const [data, setData] = React.useState<{ payload: { data: TProduct[] } }>()
 	const [loading, setLoading] = React.useState(true)
 	const [error, setError] = React.useState<Error | undefined>()
 
