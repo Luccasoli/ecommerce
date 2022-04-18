@@ -80,7 +80,7 @@ export const SearchPage = () => {
 		data: response,
 		loading,
 		error,
-	} = useFetch('http://localhost:3000/products?_page=1')
+	} = useFetch('http://127.0.0.1:3333/products?limit=10&page=1')
 	const data = response?.payload?.data
 	const location = useLocation()
 
