@@ -3,7 +3,7 @@ import Product from 'App/Models/Product'
 
 export default class ProductsController {
   public async index(ctx: HttpContextContract) {
-    const { limit, page } = ctx.request.params() as {
+    const { limit, page } = ctx.request.qs() as {
       limit?: number
       page?: number
     }
