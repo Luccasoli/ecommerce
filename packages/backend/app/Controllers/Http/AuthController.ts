@@ -1,4 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
 import Auth from 'App/Models/Auth'
 import User from 'App/Models/User'
 
@@ -55,11 +56,21 @@ export default class AuthController {
 
     try {
       const token = await ctx.auth.use('api').attempt(email, password)
+
+      const user = await Database.from('users')
+        .whereExists(
+          Database.raw(
+            `select * from users join auths on auths.user_id = users.id where auths.email = '${email}'`
+          )
+        )
+        .first()
+
       return ctx.response.status(200).send({
         message: 'Login successful',
-        data: token,
+        data: { auth: token, user },
       })
-    } catch {
+    } catch (error) {
+      console.log(error)
       return ctx.response.badRequest('Invalid credentials')
     }
   }
