@@ -15,6 +15,7 @@ import { Helmet } from 'react-helmet'
 import { useMutation } from '@host/react-query'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const SectionHeader = ({ children, ...props }: HeadingProps) => (
 	<Heading
@@ -130,12 +131,19 @@ export const AuthPage = () => {
 										cep: { value: string }
 									}
 
-									mutationRegister.mutate({
-										firstName: target.name.value.split(' ')[0],
-										lastName: target.name.value.split(' ')[1] || '',
-										CPF: target.cpf.value,
-										email: target.email.value,
-										password: target.password.value,
+									const promise = () =>
+										mutationRegister.mutateAsync({
+											firstName: target.name.value.split(' ')[0],
+											lastName: target.name.value.split(' ')[1] || '',
+											CPF: target.cpf.value,
+											email: target.email.value,
+											password: target.password.value,
+										})
+
+									toast.promise(promise(), {
+										loading: 'Aguarde...',
+										success: 'Autenticado com sucesso!',
+										error: 'Erro ao autenticar',
 									})
 								}}
 							>
@@ -208,9 +216,16 @@ export const AuthPage = () => {
 								onSubmit={e => {
 									e.preventDefault()
 
-									mutationLogin.mutateAsync({
-										email: 'lucas@gmail.com',
-										password: 'admin123',
+									const promise = () =>
+										mutationLogin.mutateAsync({
+											email: 'lucas@gmail.com',
+											password: 'admin123',
+										})
+
+									toast.promise(promise(), {
+										loading: 'Aguarde...',
+										success: 'Autenticado com sucesso!',
+										error: 'Erro ao autenticar',
 									})
 								}}
 							>

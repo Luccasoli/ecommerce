@@ -5,6 +5,7 @@ import { StepsStyleConfig } from '@payment/Stepper'
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@host/react-query'
+import { Toaster } from 'react-hot-toast'
 import { ErrorHandler } from './components/ErrorBoundary'
 import { ErrorPage } from './pages/ErrorPage'
 
@@ -61,6 +62,7 @@ export const App = () => (
 	<ChakraProvider theme={theme}>
 		<CartProvider>
 			<QueryClientProvider client={queryClient}>
+				<Toaster />
 				<BrowserRouter>
 					<Routes>
 						<Route
