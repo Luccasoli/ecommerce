@@ -6,7 +6,7 @@ import { useFetch } from '../hooks/useFetch'
 
 export const HomePage = () => {
 	const { data, loading, error } = useFetch(
-		'http://127.0.0.1:3333/products?limit=10&page=1'
+		'http://127.0.0.1:3333/products?limit=12&page=1'
 	)
 
 	const renderProducts = () => {
