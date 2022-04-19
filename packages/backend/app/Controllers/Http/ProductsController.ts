@@ -25,7 +25,19 @@ export default class ProductsController {
     })
   }
 
-  public async show({ params }: HttpContextContract) {
-    return Product.findOrFail(params.id)
+  public async show(ctx: HttpContextContract) {
+    try {
+      const product = await Product.findOrFail(ctx.params.id)
+
+      return ctx.response.status(200).json({
+        message: 'Product found',
+        payload: product,
+      })
+    } catch (error) {
+      return ctx.response.status(400).json({
+        message: 'Error while fetching product',
+        error: error.message,
+      })
+    }
   }
 }
