@@ -55,18 +55,36 @@ const Card = ({ children, ...props }: FlexProps) => (
 const login = (args: { email: string; password: string }) =>
 	axios.post('http://127.0.0.1:3333/login', args)
 
+const register = (args: {
+	firstName: string
+	lastName: string
+	CPF: string
+	email: string
+	password: string
+}) => axios.post('http://127.0.0.1:3333/register', args)
+
 export const AuthPage = () => {
 	const [, setUser] = useUser()
-	const mutation = useMutation(login, {
+	const navigate = useNavigate()
+
+	const mutationLogin = useMutation(login, {
 		onSuccess: response => {
 			setUser({
 				name: response.data.data.user.first_name,
 				email: response.data.data.user.email,
 				token: response.data.data.auth.token,
 			})
+			navigate('/')
 		},
 	})
-	const navigate = useNavigate()
+	const mutationRegister = useMutation(register, {
+		onSuccess: (_, variables) => {
+			mutationLogin.mutate({
+				email: variables.email,
+				password: variables.password,
+			})
+		},
+	})
 
 	return (
 		<>
@@ -100,7 +118,27 @@ export const AuthPage = () => {
 					>
 						<Card>
 							<SectionHeader>Cadastro</SectionHeader>
-							<Form>
+							<Form
+								onSubmit={e => {
+									e.preventDefault()
+
+									const target = e.target as typeof e.target & {
+										email: { value: string }
+										password: { value: string }
+										name: { value: string }
+										cpf: { value: string }
+										cep: { value: string }
+									}
+
+									mutationRegister.mutate({
+										firstName: target.name.value.split(' ')[0],
+										lastName: target.name.value.split(' ')[1] || '',
+										CPF: target.cpf.value,
+										email: target.email.value,
+										password: target.password.value,
+									})
+								}}
+							>
 								<FormControl isRequired>
 									<FormLabel htmlFor="name">Nome Completo</FormLabel>
 									<Input
@@ -167,15 +205,13 @@ export const AuthPage = () => {
 						<Card>
 							<SectionHeader>Acesso</SectionHeader>
 							<Form
-								onSubmit={async e => {
+								onSubmit={e => {
 									e.preventDefault()
 
-									await mutation.mutateAsync({
+									mutationLogin.mutateAsync({
 										email: 'lucas@gmail.com',
 										password: 'admin123',
 									})
-
-									navigate('/')
 								}}
 							>
 								<FormControl isRequired>
