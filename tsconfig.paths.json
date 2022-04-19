@@ -6,6 +6,7 @@
 			"@shared/*": ["./packages/shared/*"],
 			"@host/useCart": ["./packages/host/src/context/Cart/useCart"],
 			"@host/CartProvider": ["./packages/host/src/context/Cart/CartProvider"],
+			"@host/react-query": ["./packages/host/src/context/react-query"],
 			"@host/Header": ["./packages/host/src/components/Header"],
 			"@host/useUser": ["./packages/host/src/hooks/useUser"],
 			"@home/Home": ["./packages/home/src/pages/Home"],

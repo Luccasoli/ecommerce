@@ -12,7 +12,9 @@ import {
 import Header from '@host/Header'
 import { useUser } from '@host/useUser'
 import { Helmet } from 'react-helmet'
+import { useMutation } from '@host/react-query'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const SectionHeader = ({ children, ...props }: HeadingProps) => (
 	<Heading
@@ -50,9 +52,20 @@ const Card = ({ children, ...props }: FlexProps) => (
 	</Flex>
 )
 
-export const AuthPage = () => {
-	const [user, setUser] = useUser()
+const login = (args: { email: string; password: string }) =>
+	axios.post('http://127.0.0.1:3333/login', args)
 
+export const AuthPage = () => {
+	const [, setUser] = useUser()
+	const mutation = useMutation(login, {
+		onSuccess: response => {
+			setUser({
+				name: response.data.data.user.first_name,
+				email: response.data.data.user.email,
+				token: response.data.data.auth.token,
+			})
+		},
+	})
 	const navigate = useNavigate()
 
 	return (
@@ -154,13 +167,12 @@ export const AuthPage = () => {
 						<Card>
 							<SectionHeader>Acesso</SectionHeader>
 							<Form
-								onSubmit={e => {
+								onSubmit={async e => {
 									e.preventDefault()
 
-									setUser({
-										name: 'Lucas',
-										email: 'email@gmail.com',
-										token: 'token',
+									await mutation.mutateAsync({
+										email: 'lucas@gmail.com',
+										password: 'admin123',
 									})
 
 									navigate('/')

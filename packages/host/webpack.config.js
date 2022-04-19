@@ -67,6 +67,7 @@ module.exports = env => {
 						'Cart',
 						'CartProvider'
 					),
+					'./react-query': path.resolve('src', 'context', 'react-query'),
 					'./Header': path.resolve('src', 'components', 'Header'),
 					'./useUser': path.resolve('src', 'hooks', 'useUser'),
 				},
