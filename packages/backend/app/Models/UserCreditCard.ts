@@ -7,6 +7,9 @@ export default class UserCreditCard extends BaseModel {
   public id: number
 
   @column()
+  public isSelected: boolean
+
+  @column()
   public name: string
 
   @column()

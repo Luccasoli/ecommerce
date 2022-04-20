@@ -22,6 +22,7 @@ import './routes/auth'
 import './routes/product'
 import './routes/payment'
 import './routes/order'
+import './routes/address'
 
 import Route from '@ioc:Adonis/Core/Route'
 

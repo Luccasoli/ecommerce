@@ -6,6 +6,8 @@ export default class UserAddresses extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table.string('identification').notNullable()
+      table.string('is_selected').notNullable().defaultTo('false')
       table.string('address').notNullable()
       table.string('number').notNullable()
       table.string('complement')

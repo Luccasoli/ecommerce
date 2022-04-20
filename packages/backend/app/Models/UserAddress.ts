@@ -7,6 +7,12 @@ export default class UserAddress extends BaseModel {
   public id: number
 
   @column()
+  public isSelected: boolean
+
+  @column()
+  public identification: string
+
+  @column()
   public address: string
 
   @column()

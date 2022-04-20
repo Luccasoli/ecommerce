@@ -67,6 +67,8 @@ export const UserFactory = Factory.define(User, ({ faker }) => {
 export const AddressFactory = Factory.define(UserAddress, ({ faker }) => {
   return {
     address: faker.address.streetAddress(),
+    isActiveAddress: false,
+    identification: faker.address.city(),
     city: faker.address.city(),
     state: faker.address.state(),
     postalCode: faker.address.zipCode(),
