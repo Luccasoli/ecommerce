@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { Button, Flex, Heading, LinkBox, Text } from '@chakra-ui/react'
-import { Helmet } from 'react-helmet'
-import { Link as RouterLink } from 'react-router-dom'
 import { Step, Steps, useSteps } from '@payment/Stepper'
-import { FiBookmark, FiUser } from 'react-icons/fi'
+import { Helmet } from 'react-helmet'
+import { FiBookmark } from 'react-icons/fi'
+import { Link as RouterLink } from 'react-router-dom'
+import Address from '../components/Steps/Address/Address'
 
 const content = (
 	<Flex py={4} flex={1}>
@@ -18,6 +19,7 @@ const content = (
 const steps = [
 	{ label: 'Carrinho', content },
 	{ label: 'Identificação', content },
+	{ label: 'Entrega', content: <Address /> },
 	{ label: 'Pagamento', content, description: 'oi' },
 	{ label: 'Confirmação', content },
 	{
