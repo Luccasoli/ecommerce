@@ -184,4 +184,26 @@ export default class AddressController {
       message: `${ModelName} updated with active address`,
     })
   }
+
+  public async delete(ctx: HttpContextContract) {
+    const id = ctx.request.param('id') as number
+
+    let user: User
+    try {
+      user = await getUser(ctx)
+    } catch (error) {
+      return ctx.response.badRequest(error.message)
+    }
+
+    const queryAddress = await UserAddress.query().where('user_id', user.id).where('id', id).first()
+    if (!queryAddress) {
+      return ctx.response.badRequest(`${ModelName} not found`)
+    }
+
+    queryAddress.delete()
+
+    ctx.response.status(200).send({
+      message: `${ModelName} deleted`,
+    })
+  }
 }
