@@ -67,7 +67,7 @@ export const UserFactory = Factory.define(User, ({ faker }) => {
 export const AddressFactory = Factory.define(UserAddress, ({ faker }) => {
   return {
     address: faker.address.streetAddress(),
-    isActiveAddress: false,
+    isActive: false,
     identification: faker.address.city(),
     city: faker.address.city(),
     state: faker.address.state(),
@@ -81,6 +81,7 @@ export const AddressFactory = Factory.define(UserAddress, ({ faker }) => {
 export const CreditCardFactory = Factory.define(UserCreditCard, ({ faker }) => {
   return {
     cvv: faker.random.number({ min: 100, max: 999 }).toString(),
+    isActive: false,
     number: faker.random.number({ min: 1000000000000000, max: 9999999999999999 }).toString(),
     expirationDate: faker.date.future(),
     name: ['Mastercard', 'Visa', 'American Express'][Math.floor(Math.random() * 3)],

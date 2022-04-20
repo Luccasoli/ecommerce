@@ -30,6 +30,28 @@ const getUser = async (ctx: HttpContextContract) => {
 const ModelName = 'Address'
 
 export default class AddressController {
+  public async active(ctx: HttpContextContract) {
+    let user: User
+    try {
+      user = await getUser(ctx)
+    } catch (error) {
+      return ctx.response.badRequest(error.message)
+    }
+
+    const address = await UserAddress.query()
+      .where('user_id', user.id)
+      .where('isSelected', true)
+      .first()
+    if (!address) {
+      return ctx.response.badRequest(`${ModelName} not found`)
+    }
+
+    ctx.response.status(200).send({
+      message: `${ModelName} listed`,
+      payload: address,
+    })
+  }
+
   public async index(ctx: HttpContextContract) {
     let user: User
     try {

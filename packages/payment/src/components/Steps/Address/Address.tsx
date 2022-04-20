@@ -3,29 +3,70 @@ import {
 	Button,
 	Flex,
 	Heading,
+	Skeleton,
 	Text,
 	useDisclosure,
 } from '@chakra-ui/react'
+import axios from 'axios'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import { useQuery } from '@host/react-query'
+import { useUser } from '@host/useUser'
 import SaveAddressModal from './SaveAddressModal'
 import SelectAddressModal from './SelectAddressModal'
+import AddressTextStructure from './AddressTextStructure'
 
 const SelectedAddress = ({
-	address,
 	onSelectAddressModalOpen,
 	onSaveAddressModalOpen,
 }: any) => {
+	const [user] = useUser()
+	const { isLoading, data } = useQuery('activeAddress', () =>
+		axios.get(`http://127.0.0.1:3333/address/active`, {
+			headers: {
+				Authorization: `Bearer ${user?.token}`,
+			},
+		})
+	)
+
 	const renderAddress = () => {
-		if (!address) {
+		if (isLoading) {
+			return (
+				<>
+					<Skeleton height="20px" />
+					<Skeleton height="20px" />
+					<Skeleton height="20px" />
+				</>
+			)
+		}
+
+		if (!data) {
 			return <Text>Nenhum endereço cadastrado</Text>
 		}
 
+		const {
+			identification,
+			address,
+			number,
+			complement,
+			neighborhood,
+			city,
+			state,
+			postal_code: postalCode,
+		} = data.data.payload
+
 		return (
-			<>
-				<Text>Rua Frei Odilon, 624</Text>
-				<Text>Número: 624, BL. C11, QD. 01, AP. 01</Text>
-				<Text>CEP 60336190 - Fortaleza, CE</Text>
-			</>
+			<AddressTextStructure
+				address={{
+					identification,
+					street: address,
+					number,
+					complement,
+					neighborhood,
+					city,
+					state,
+					postalCode,
+				}}
+			/>
 		)
 	}
 
